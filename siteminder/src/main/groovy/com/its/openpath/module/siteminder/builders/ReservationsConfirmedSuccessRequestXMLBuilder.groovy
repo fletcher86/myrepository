@@ -13,6 +13,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.reservation.sitemin
 import com.its.openpath.module.opscommon.util.InvocationContext
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>ReservationsConfirmedSuccessRequestXMLBuilder</code>
+ * <p/>
+ * Concrete class for building ReservationsConfirmedSuccessRequestXMLBuilder and inherits common functions from AbstractSiteminderXMLBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("ReservationsConfirmedSuccessRequestXMLBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/ReservationsConfirmedSuccessRequestXMLBuilder')
 class ReservationsConfirmedSuccessRequestXMLBuilder extends AbstractSiteminderXMLBuilder

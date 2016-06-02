@@ -14,6 +14,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.OpsTxnType
 import com.its.openpath.module.opscommon.util.EventMessageBusQueueNames
 import com.its.openpath.module.siteminder.builders.HotelAvailabilityXMLBuilder
 
+/**
+ * <code>AbstractSiteminderBaseSubscriber</code>
+ * <p/>
+ * Base subscriber class
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 
 @Service("HotelAvailabilityNotifSubscriber")
 @ManagedResource('OPENPATH:name=/module/siteminder/HotelAvailabilityNotifSubscriber')

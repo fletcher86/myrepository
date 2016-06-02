@@ -8,6 +8,14 @@ import org.slf4j.LoggerFactory
 import com.dyuproject.protostuff.Message
 import com.its.openpath.module.opscommon.model.messaging.ops.OpsTxnType
 
+/**
+ * <code>AbstractSiteminderXMLBuilder</code>
+ * <p/>
+ * Base class for all 'Builder' classes. Contains methods common for all subclasses.
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 abstract class AbstractSiteminderXMLBuilder
 {
   private static final Logger sLogger = LoggerFactory.getLogger( AbstractSiteminderXMLBuilder.class.name )

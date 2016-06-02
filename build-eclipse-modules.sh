@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for N in  opscommon pegasus opsari reztripsim
+for N in  opscommon pegasus opsari reztripsim siteminder sitemindersim
 do
 	cd $N
         echo "************************************"

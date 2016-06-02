@@ -12,6 +12,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.reservation.sitemin
 import com.its.openpath.module.opscommon.model.messaging.ops.reservation.siteminder.NotificationReportRequest
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>ReservationsConfirmedErrorRequestXMLBuilder</code>
+ * <p/>
+ * Concrete class for building ReservationsConfirmedErrorRequestXMLBuilder and inherits common functions from AbstractSiteminderXMLBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("ReservationsConfirmedErrorRequestXMLBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/ReservationsConfirmedErrorRequestXMLBuilder')
 class ReservationsConfirmedErrorRequestXMLBuilder extends AbstractSiteminderXMLBuilder

@@ -30,6 +30,15 @@ import com.its.openpath.module.opscommon.util.PersistenceMessageBusQueueNames
 import com.its.openpath.module.opscommon.util.OpsStatuses
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>AbstractSiteminderBaseSubscriber</code>
+ * <p/>
+ * Base subscriber class
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
+
 abstract class AbstractSiteminderBaseSubscriber
 implements IMessageBusSubscriber
 {

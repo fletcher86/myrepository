@@ -17,6 +17,17 @@ import com.its.openpath.module.siteminder.builders.ReservationsPullResponseJSONB
 
 
 
+/**
+ * <code>ReservationsPullNotifSubscriber</code>
+ * <p/>
+ * Consume Rate Update Notifications from the OPS Message Bus and POST them to the Siteminder IDS Web Service Endpoint.
+ * The incoming Notification messages from the OPS bus are in the OPS JSON format, and the Notifications POSTed to
+ * Siteminder are OTA XML encoded.
+ * <p />
+ * @author Lyle Fletcher
+ * @since May 2012
+ */
+
 @Service("ReservationsPullNotifSubscriber")
 @ManagedResource('OPENPATH:name=/module/siteminder/ReservationsPullNotifSubscriber')
 class ReservationsPullNotifSubscriber extends AbstractSiteminderBaseSubscriber

@@ -22,7 +22,7 @@ import com.its.openpath.module.siteminder.builders.RateManagementXMLBuilder
  * The incoming Notification messages from the OPS bus are in the OPS JSON format, and the Notifications POSTed to
  * Siteminder are OTA XML encoded.
  * <p />
- * @author rajiv@itstcb.com
+ * @author Lyle Fletcher
  * @since May 2012
  */
 

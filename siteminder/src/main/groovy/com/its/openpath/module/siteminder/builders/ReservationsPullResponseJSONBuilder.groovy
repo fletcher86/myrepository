@@ -24,6 +24,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.reservation.sitemin
 import com.its.openpath.module.opscommon.util.InvocationContext
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>ReservationsPullResponseJSONBuilder</code>
+ * <p/>
+ * Concrete class for building ReservationsPullResponseJSONBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("ReservationsPullResponseJSONBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/ReservationsPullResponseJSONBuilder')
 class ReservationsPullResponseJSONBuilder

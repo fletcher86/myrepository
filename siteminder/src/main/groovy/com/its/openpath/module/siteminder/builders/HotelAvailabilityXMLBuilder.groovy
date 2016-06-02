@@ -11,6 +11,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.AvailabilityStatusI
 import com.its.openpath.module.opscommon.util.InvocationContext
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>HotelAvailabilityXMLBuilder</code>
+ * <p/>
+ * Concrete class for building HotelAvailablity XML and inherits common functions from AbstractSiteminderXMLBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("HotelAvailabilityXMLBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/HotelAvailabilityXMLBuilder')
 class HotelAvailabilityXMLBuilder extends AbstractSiteminderXMLBuilder

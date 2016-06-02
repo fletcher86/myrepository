@@ -23,6 +23,14 @@ import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 import com.its.openpath.module.siteminder.subscribers.TrustManagerManipulator
 
 
+/**
+ * <code>AbstractSAFHandler</code>
+ * <p/>
+ * Concrete class for building ReservationsPullResponseJSONBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 abstract class AbstractSAFHandler extends AbstractEventPersistenceHandler
 {
   private static final Logger sLogger = LoggerFactory.getLogger( AbstractSAFHandler.class.name )

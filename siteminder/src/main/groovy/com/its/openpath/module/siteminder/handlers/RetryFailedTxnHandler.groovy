@@ -14,6 +14,15 @@ import com.its.openpath.module.opscommon.util.StatusMonitoringEventMessageBusQue
 import com.its.openpath.module.opscommon.util.OpsStatuses
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>InProgressTxnHandler.groovy</code>
+ * <p/>
+ * If a transaction has been sitting around for a while 'IN_PROGRESS', mark it as failed
+ * <p/>
+ * @author Lyle Fletcher
+ * @since Sep 6, 2012
+ */
+
 @Service("RetryFailedTxnHandler")
 @ManagedResource('OPENPATH:name=/module/siteminder/handlers/RetryFailedTxnHandler')
 class RetryFailedTxnHandler extends AbstractSAFHandler

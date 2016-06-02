@@ -15,6 +15,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.rate.RateRequest
 import com.its.openpath.module.opscommon.util.InvocationContext
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>RateManagementXMLBuilder</code>
+ * <p/>
+ * Concrete class for building RateManagementXMLBuilder and inherits common functions from AbstractSiteminderXMLBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("RateManagementXMLBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/RateManagementXMLBuilder')
 class RateManagementXMLBuilder extends AbstractSiteminderXMLBuilder

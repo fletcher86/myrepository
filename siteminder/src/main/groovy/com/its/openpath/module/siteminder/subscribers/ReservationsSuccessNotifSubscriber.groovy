@@ -14,6 +14,17 @@ import com.its.openpath.module.opscommon.model.messaging.ops.OpsTxnType
 import com.its.openpath.module.opscommon.util.EventMessageBusQueueNames
 import com.its.openpath.module.siteminder.builders.ReservationsConfirmedSuccessRequestXMLBuilder
 
+/**
+ * <code>ReservationsSuccessNotifSubscriber</code>
+ * <p/>
+ * Consume successful reservation notifications from the OPS Message Bus and POST them to the Siteminder IDS Web Service Endpoint.
+ * The incoming Notification messages from the OPS bus are in the OPS JSON format, and the Notifications POSTed to
+ * Siteminder are OTA XML encoded.
+ * <p />
+ * @author Lyle Fletcher
+ * @since May 2012
+ */
+
 @Service("ConfirmedReservationsHandler")
 @ManagedResource('OPENPATH:name=/module/siteminder/handlers/ConfirmedReservationsHandler')
 class ReservationsSuccessNotifSubscriber extends AbstractSiteminderBaseSubscriber

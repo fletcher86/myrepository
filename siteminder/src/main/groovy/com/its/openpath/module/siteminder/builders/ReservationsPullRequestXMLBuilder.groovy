@@ -13,6 +13,14 @@ import com.its.openpath.module.opscommon.model.messaging.ops.reservation.sitemin
 import com.its.openpath.module.opscommon.util.InvocationContext
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>ReservationsPullRequestXMLBuilder</code>
+ * <p/>
+ * Concrete class for building ReservationsPullRequestXMLBuilder and inherits common functions from AbstractSiteminderXMLBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
 @Service("ReservationsPullRequestXMLBuilder")
 @ManagedResource('OPENPATH:name=/module/siteminder/builder/ReservationsPullRequestXMLBuilder')
 class ReservationsPullRequestXMLBuilder extends AbstractSiteminderXMLBuilder

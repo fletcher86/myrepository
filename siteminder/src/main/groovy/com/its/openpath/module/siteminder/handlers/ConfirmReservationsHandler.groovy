@@ -13,6 +13,15 @@ import com.its.openpath.module.opscommon.util.OpsStatuses
 import com.its.openpath.module.opscommon.util.StatusMonitoringEventMessageBusQueueNames
 import com.its.openpath.module.opscommon.util.TimeUUIDUtils
 
+/**
+ * <code>AbstractSAFHandler</code>
+ * <p/>
+ * Concrete class for building ReservationsPullResponseJSONBuilder
+ * <p />
+ * @author Lyle Fletcher
+ * @since June 2012
+ */
+
 @Service("ConfirmReservationsHandler")
 @ManagedResource('OPENPATH:name=/module/siteminder/handlers/ConfirmReservationsHandler')
 class ConfirmReservationsHandler extends AbstractSAFHandler
