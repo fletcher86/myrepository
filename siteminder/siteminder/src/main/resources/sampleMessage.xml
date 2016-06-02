@@ -1,0 +1,58 @@
+<!-- Rate Management Request -->
+<OTA_HotelRatePlanNotifRQ Version="3.3" MessageContentCode="8">
+  <RatePlans HotelCode="12345"> <!--RatePlanType="10" (Negotiated)--> <!--RatePlanType="11" (Package)--> <!--RatePlanType="13" (Rack)-->
+    <RatePlan RatePlanCode="WKR" RatePlanType="10" MarketCode="TestPlan2">
+      <DestinationSystemsCode>
+        <DestinationSystemCode>Expedia</DestinationSystemCode>
+      </DestinationSystemsCode>
+      <Rates>
+        <Rate Start="2011-01-01" End="2011-01-31" CurrencyCode="EUR" InvTypeCode="SGL_ST" RateTimeUnit="Day" UnitMultiplier="1" Mon="1" Tue="1" Weds="1" Thur="1" Fri="1" Sat="1" Sun="1">
+          <!--Rate,SglRate,DblRate,TrpRate,QuadRate,PentaRate,HexaRate,ChildRate Parameter-->
+          <BaseByGuestAmts>
+            <BaseByGuestAmt AgeQualifyingCode="10" AmountAfterTax="172.00" />
+            <BaseByGuestAmt NumberOfGuests="1" AgeQualifyingCode="10" AmountAfterTax="172.00" />
+            <BaseByGuestAmt NumberOfGuests="2" AgeQualifyingCode="10" AmountAfterTax="232.00" />
+            <BaseByGuestAmt NumberOfGuests="3" AgeQualifyingCode="10" AmountAfterTax="262.00" />
+            <BaseByGuestAmt NumberOfGuests="4" AgeQualifyingCode="10" AmountAfterTax="302.00" />
+            <BaseByGuestAmt NumberOfGuests="5" AgeQualifyingCode="10" AmountAfterTax="392.00" />
+            <BaseByGuestAmt NumberOfGuests="6" AgeQualifyingCode="10" AmountAfterTax="482.00" />
+          </BaseByGuestAmts>
+          <!--SupplementRate,ExtraChildRate Parameter-->
+          <AdditionalGuestAmounts>
+            <AdditionalGuestAmount AgeQualifyingCode="10" Amount="102.00" />
+            <AdditionalGuestAmount AgeQualifyingCode="8" Amount="22.00" />
+          </AdditionalGuestAmounts>
+          <!--BoardType,Breakfast Parameter-->
+          <MealsIncluded MealPlanIndicator="true" MealPlanCodes="13" Breakfast="true" />
+          <!--BreakFastRate Parameter-->
+          <AdditionalCharges>
+            <AdditionalCharge RoomAmenityCode="160">
+              <Amount AmountAfterTax="12.00" />
+            </AdditionalCharge>
+          </AdditionalCharges>
+          <!--Guarantee Parameter-->
+          <GuaranteePolicies>
+            <GuaranteePolicy>
+              <GuaranteeDescription>
+                <Text>Guarantee Required In Card Only.</Text>
+              </GuaranteeDescription>
+            </GuaranteePolicy>
+          </GuaranteePolicies>
+          <!--Cancellation Parameter-->
+          <CancelPolicies>
+            <CancelPenalty>
+              <PenaltyDescription>
+                <Text>Cancellation will be charged @ EUR 12 per room per night.</Text>
+              </PenaltyDescription>
+            </CancelPenalty>
+          </CancelPolicies>
+          <!--Inclusion Parameter-->
+          <RateDescription>
+            <Text>Swimming Pool.</Text>
+          </RateDescription>
+        </Rate>
+      </Rates>
+      <UniqueID Type="16" ID="365355859" />
+    </RatePlan>
+  </RatePlans>
+</OTA_HotelRatePlanNotifRQ>

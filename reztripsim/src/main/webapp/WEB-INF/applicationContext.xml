@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================== -->
+<!-- The main Spring bean definition file. -->
+<!-- ===================================== -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:cxf="http://cxf.apache.org/core"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxrs
+    http://cxf.apache.org/schemas/jaxrs.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+  <import resource="applicationContext-osgi.xml" />
+  <context:component-scan base-package="com.its.openpath.module.reztripsim" />
+  <context:annotation-config />
+  <context:mbean-export />
+
+  <!-- Load the runtime environment specific configuration file -->
+  <util:properties id="runtimeProperties"
+    location="classpath:WEB-INF/classes/conf/environments/${ENV}/runtime.properties" />
+
+  <jaxrs:server address="/">
+    <jaxrs:serviceBeans>
+      <ref bean="GDSAvailabilityManagementResource" />
+      <ref bean="GDSReservationManagementResource" />
+      <ref bean="GDSRateManagementResource" />
+      <ref bean="RateUpdateResource" />
+      <ref bean="HotelAvailabilityNotificationResource" />
+      <ref bean="ReadReservationsResource" />
+      <ref bean="ConfirmReservationsResource" />
+    </jaxrs:serviceBeans>
+    <!--
+    <jaxrs:features>
+    <cxf:logging />
+    </jaxrs:features>
+    -->
+  </jaxrs:server>
+</beans>
+

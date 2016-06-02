@@ -1,0 +1,314 @@
+package com.its.openpath.module.opscommon.model.messaging.ops.reservation;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops.reservation";
+option optimize_for = LITE_RUNTIME;
+
+import "OPSCommon.proto";
+
+/**
+ * Defines data structures related to Product Reservation
+ */
+
+enum ReservationManagementType
+{
+  NEW_RESERVATION = 200;
+  MODIFY_RESERVATION = 201;
+  DELETE_RESERVATION = 202;
+  CANCEL_RESERVATION = 203;
+  IGNORE_RESERVATION = 204;
+  END_RESERVATION = 205;
+  PULL_RESERVATIONS = 210;
+  CONFIRM_RESERVATIONS =211;
+  CONFIRMED_RESERVATIONS=212;
+  ERROR_RESERVATIONS=213;
+}
+
+message ReservationRequest
+{
+  required ProductType productType = 1;
+  optional RoomReservationManagementRequest requestData = 2;
+}
+
+message ReservationResponse
+{
+  required ProductType productType = 1;
+  optional RoomReservationManagementResponse responseData = 2;
+  optional ErrorResponse errorResponse = 3;
+}
+
+message RoomReservationManagementRequest
+{
+  required ReservationManagementType reservationMgtType = 1;
+  required string extSysRefId = 2;
+  required string extSysTimestamp = 3;
+  repeated RoomReservationRequest reservationRequest = 4;
+}
+
+message RoomReservationManagementResponse
+{
+  required ReservationManagementType reservationMgtType = 1;
+  required string extSysRefId = 2;
+  required string extSysTimestamp = 3;
+  required string isSuccess = 4;
+  optional RoomReservationConfirmationResponse reservationConfirmationResponse = 5;
+  optional RoomReservationUnavailableResponse reservationUnavailableResponse = 6;
+  optional RoomReservationCancellationResponse reservationCancellationResponse = 7;
+  optional RoomReservationIgnoreOrEndResponse reservationIgnoreOrEndResponse = 8;
+}
+
+message RoomReservationRequest
+{
+  required ReservationManagementType reservationMgtType = 1;
+  optional PropertyInfo propertyInfo = 2;
+  optional GuestInfo guestInfo = 3;
+  optional ArrivalInfo arrivalInfo = 4;
+  optional RoomInfo roomInfo = 5;
+  repeated ExtraBedInfo extraBeds = 6;
+  optional GuaranteeInfo guaranteeInfo = 7;
+  optional CreditCardPaymentInfo creditCardPaymentInfo = 8;
+  repeated ExtraPersonInfo extraPersonInfo = 9;
+  optional string bedType = 10;
+  optional string numberOfBeds = 11;
+  optional string corporateDiscountId = 12;
+  optional string checkInDate = 13;
+  optional string checkOutDate = 14;
+  repeated string mealPlans = 15;
+  optional string numberOfAdults = 16;
+  optional string numberOfChildren = 17;
+  repeated string agesOfChildren = 18;
+  optional string numberOfNights = 19;
+  optional string numberOfRooms = 20;
+  optional string remarks = 21;
+  repeated string specialServiceReqInfo = 22;
+  optional string serviceInfo = 23;
+  optional string tourNumber = 24;
+  repeated GuestDataSegment guestDataSegments = 25;
+  optional string confirmationNumber = 26;
+}
+
+message RoomReservationCancellationResponse
+{
+  optional string bookingStatus = 1;
+  optional string cancellationNumber = 2;
+  optional string additionalText = 3;
+}
+
+message RoomReservationIgnoreOrEndResponse
+{
+  optional string bookingStatus = 1;
+  optional string confirmationNumber = 2;
+}
+
+message ExtraPersonInfo
+{
+  optional string prefix = 1 [default = ""];
+  optional string rate = 2 [default = ""];
+  optional string currencyCode = 3 [default = ""];
+}
+
+message ArrivalInfo
+{
+  optional string city = 1;
+  optional string time = 2;
+  optional string flight = 3;
+  optional string groupName = 4;
+}
+
+message GuaranteeInfo
+{
+  optional string type = 1;
+  optional string additionalInfo = 2;
+  optional string creditCardSecurityCode = 3;
+  optional string billingAddress = 4;
+}
+
+message CreditCardPaymentInfo
+{
+  optional string typeId = 1;
+  optional string number = 2;
+  optional string securityCode = 3;
+  optional string expiryDate = 4;
+  optional string nameOnCard = 5;
+}
+
+
+message RoomReservationConfirmationResponse
+{
+ optional string bookingStatus = 2;
+ optional string confirmationNumber = 3;
+ optional string roomType = 4;
+ optional string rateCategory = 5;
+ optional string rateFrequency = 6;
+ optional string ratePlanDescription = 7;
+ optional string bedType = 8;
+ optional string roomQuality = 9;
+ optional string numberOfBeds = 10;
+ optional string bookedRate = 11;
+ optional string currencyCode = 12;
+ optional string totalRoomRateNoTaxesFees = 13;
+ optional string totalRoomRateWithTaxesFees = 14;
+ optional string totalRoomRateWithTaxesFeesCharges = 15;
+ optional string totalTax = 16;
+ optional string totalSurcharges = 17;
+ optional string guestName = 18;
+ optional string numberOfRooms = 19;
+ optional string numberOfAdults = 20;
+ optional string numberOfChildren = 21;
+ optional string numberOfPersonsRate = 22;
+ optional RoomStayConfirmation stayConfirmation = 23;
+ optional RoomCancellationInfo cancellationInfo = 24;
+ optional GuaranteeDepositAndCancelPolicyInfo guaranteeDepositCancelInfo = 25;
+ optional ExtraChargeInformation extraChargeInfo = 26;
+ optional RateChargeInfo rateChargeInfo = 27;
+ optional string miscellaneousText = 28;
+}
+
+message RoomStayConfirmation
+{
+ optional string credentialsRequiredAtCheckIn = 1;
+ optional string checkInTime = 2;
+ optional string checkOutTime = 3;
+ optional string checkInText = 4;
+ optional string validDaysOfTheWeek = 5;
+ optional string minLOS = 6;
+ optional string maxLOS = 7;
+ optional string rateChangeIndicator = 8;
+ optional string rateGuaranteeIndicator = 9;
+ optional string commissionableRateStatus = 10;
+ optional string paymentDeadlineTime = 11;
+ optional string paymentDeadlineDate = 12;
+ optional string paymentOffsetIndicator = 13;
+ optional string depositDeadline = 14;
+ optional string prepaymentDeadline = 15;
+ optional string prepaymentAmount = 16;
+ optional string depositAmount = 17;
+ optional string nonRefundableStay = 18;
+ optional string depositDeadline = 19;
+ optional string paymentDeadline = 20;
+ optional string prepaymentAmountRequired = 21;
+ optional string depositAmountRequired = 22;
+ optional string nonRefundableStayIndicator = 23;
+}
+
+message RoomCancellationInfo
+{
+ optional string cancellationDeadlineTime = 1;
+ optional string cancellationDeadlineDate = 2;
+ optional string cancellationOffsetIndicator = 3;
+ optional string cancellationRequiredBy = 4;
+ optional string taxesIncludedInPenalty = 5;
+ optional string feesIncludedInPenalty = 6;
+ optional string cancelPenaltyAmount = 7;
+ optional string cancelPenaltyNumOfNightsCharged = 8;
+ optional string cancelPenaltyPercentage = 9;
+ optional string cancellationPercentageCostQualifier = 10;
+}
+
+message GuaranteeDepositAndCancelPolicyInfo
+{
+  optional string cancellationPolicy = 1;
+  optional string guaranteeMethods = 2;
+  optional string commissionPolicy = 3;
+  optional string advancedBookingRequired = 4;
+}
+
+message ExtraChargeInformation
+{
+  optional string segmentOccurrenceCount = 1;
+  repeated string extraBedPrefixes = 2;
+  repeated string extraBedRates = 3;
+  repeated string extraPersonPrefixes = 4;
+  repeated string extraPersonRates = 5;
+  optional string taxInfo = 6;
+  optional string serviceCharges = 7;
+}
+
+message RateChargeInfo
+{
+  optional string segmentOccurrenceCount = 1;
+  optional string rateChangeDate = 2;
+  optional string bookedRate = 3;
+  optional string rateFrequency = 4;
+  optional string addRateChangeIndicator = 5;
+  optional string extraBedPrefix = 6;
+  optional string extraBedRate = 7;
+  optional string extraPersonPrefix = 8;
+  optional string extraPersonRate = 9;
+}
+
+message GuestDataSegment
+{
+  optional string numberOfAdults = 1;
+  optional string guestName = 2;
+  optional string numberOfChildren = 3;
+  optional Email email = 4;
+  optional Phone phone = 5;
+  optional Address address = 6;
+}
+
+message RoomReservationUnavailableResponse
+{
+  optional string bookingStatus = 1;
+  repeated ErrorMessage errors = 2;
+  optional AlternateRoomsOrPackagesResponse alternateRoomsOrPackages = 3;
+  optional AlternateCalendarAvailabilityResponse alternateCalendarAvailability = 4;
+  optional AlternatePropertyResponse alternateProperties = 5;
+  optional string optionalText = 6;
+}
+
+message AlternateRoomsOrPackagesResponse
+{
+  optional string currencyCode = 1;
+  optional string numberOfPersonsRate = 2;
+  repeated AlternateRoomInfo responseInfo = 3;
+}
+
+message AlternateRoomInfo
+{
+  optional string segmentOccurrenceNumber = 1;
+  optional string alternateRoomRate = 2;
+  optional string alternateRoomDescription = 3;
+  optional string alternateRoomType = 4;
+}
+
+message AlternateCalendarAvailabilityResponse
+{
+  optional string currencyCode = 1;
+  optional string numberOfPersonsRate = 2;
+  repeated CalendarAvailabilityInfo responseInfo = 3;
+}
+
+message CalendarAvailabilityInfo
+{
+  optional string segmentOccurrenceNumber = 1;
+  optional string checkInDate = 2;
+  optional string startDate = 3;
+  optional string alternateRoomRate = 4;
+  optional string alternateRoomType = 5;
+  optional string mlosDuration = 6;
+  optional string ctaIndicator = 7;
+  optional string availability = 8;
+}
+
+message AlternatePropertyResponse
+{
+  optional string notAvailablePropertyId = 1;
+  optional string numberOfPersonsRate = 2;
+  repeated AlternatePropertyInfo responseInfo = 3;
+}
+
+message AlternatePropertyInfo
+{
+  optional string segmentOccurrenceNumber = 1;
+  optional string distanceFromProperty = 2;
+  optional string distanceUnits = 3;
+  optional string directionFromProperty = 4;
+  optional string alternatePropertyName = 5;
+  optional string alternatePropertyLocation = 6;
+  optional string alternatePropertyId = 7;
+  optional string alternateRoomRate = 8;
+  optional string alternateRoomType = 9;
+  optional string currencyCode = 10;
+}
+
+

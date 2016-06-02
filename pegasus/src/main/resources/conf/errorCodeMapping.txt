@@ -1,0 +1,374 @@
+/**
+ *
+ * Contains error code mapping between OPS, Pegasus AMF spec and XML OTA spec.
+ * Each line indicates how an inter OPS error code should be mapped to a Pegasus error code.
+ *
+ */
+ 
+// AMF Error Codes
+mapErrorCode ( "AMF" )
+{
+  // 99 = ERROR_CODE_MAPPING_NOT_FOUND, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 99, amfcode: "SYS81"
+  
+  // 100 = SERVICE_ENDPOINT_UNAVAILABLE, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 100, amfcode: "SYS81"
+  
+  // 101 = SERVICE_REQUEST_PROCESSING_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 101, amfcode: "SYS81"
+  
+  // 102 = SERVICE_REQUEST_FORMAT_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 101, amfcode: "SYS81"
+
+  /**
+   * 2XX
+   */
+  // 200 = SERVICE_PROVIDER_UNAVAILABLE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 200, amfcode: "SYS83"
+  
+  // 300 = SERVICE_RESPONSE_ENDPOINT_UNAVAILABLE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 300, amfcode: "SYS81"
+
+  /**
+   * 3XX
+   */
+  // 300 = SERVICE_RESPONSE_ENDPOINT_UNAVAILABLE, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 300, amfcode: "SYS81"
+
+  // 301 = SERVICE_RESPONSE_PROCESSING_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 301, amfcode: "SYS81"
+
+  // 302 = SERVICE_RESPONSE_FORMAT_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 302, amfcode: "SYS81"
+  
+  /**
+   * 5XX
+   */
+  // 500 = START_AND_END_DATE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 500, amfcode: "SYS81"
+
+  // 501 = START_AND_END_DATE_PARSE_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 501, amfcode: "SYS81"
+
+  // 502 = START_DATE_PRIOR_TO_CURRENT_DATE, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 502, amfcode: "SYS81"
+
+  // 503 = INVALID_CHECK_IN_OUT_DATE, IND07 = INVALID DATE
+  map opscode: 503, amfcode: "IND07"
+
+  // 504 = INVALID_NUMBER_OF_NIGHTS, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 504, amfcode: "SYS83"
+
+  // 510 = REQUEST_DATA_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 510, amfcode: "SYS81"
+
+  // 511 = PRODUCT_TYPE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 511, amfcode: "SYS81"
+
+  // 520 = REQUIRED_FIELD_MISSING_IN_AMENITY, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 520, amfcode: "SYS81"
+
+  // 525 = REQUIRED_FIELD_MISSING_IN_CHANNEL_INFO, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 525, amfcode: "SYS81"
+
+  // 530 = REQUIRED_FIELD_MISSING_IN_CRITERIA, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 530, amfcode: "SYS81"
+
+  // 535 = REQUIRED_FIELD_MISSING_IN_GUEST_INFO, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 535, amfcode: "SYS81"
+
+  // 540 = REQUIRED_FIELD_MISSING_IN_PRICE_RANGE, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 540, amfcode: "SYS81"
+
+  // 541 = PRICE_RANGE_MIN_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 541, amfcode: "SYS81"
+
+  // 542 = PRICE_RANGE_MAX_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 542, amfcode: "SYS81"
+
+  // 545 = REQUIRED_FIELD_MISSING_IN_RATE_PLAN, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 545, amfcode: "SYS81"
+
+  // 546 = RATE_PLAN_CODE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 546, amfcode: "SYS81"
+
+  // 550 = REQUIRED_FIELD_MISSING_IN_SEARCH_INFO, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 550, amfcode: "SYS81"
+
+  // 551 = SEARCH_CRITERIA_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 551, amfcode: "SYS81"
+
+  // 552 = SINGLE_PROPERTY_SEARCH_CRITERIA_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 552, amfcode: "SYS81"
+
+  // 555 = REQUIRED_FIELD_MISSING_IN_REQUEST_DATA, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 555, amfcode: "SYS81"
+
+  // 560 = REQUIRED_FIELD_MISSING_IN_SOURCE_DATA, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 560, amfcode: "SYS81"
+
+  // 561 = CHANNEL_INFO_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 561, amfcode: "SYS81"
+
+  // 565 = REQUIRED_FIELD_MISSING_IN_STAY, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 565, amfcode: "SYS81"
+
+  // 566 = RATE_PLAN_COUNT_EXCEEDS_MAX, SYS81 = SYSTEM ERROR, UNABLE TO PROCESSInvalid RatePlans list. Must have less than 15 instances
+  map opscode: 566, amfcode: "SYS81"
+
+  // 567 = INVALID_GUEST_INFO_COUNT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESSInvalid GuesInfo list. Must have betwen 1 and 2 instances
+  map opscode: 567, amfcode: "SYS81"
+
+  /**
+   * 6XX
+   */
+  // 600 = INVALID_RESERVATION_MGT_REQ_TYPE, SYS81 = SYSTEM ERROR, Illegal reservation type. Acceptable values are 200, 201 and 202 
+  map opscode: 600, amfcode: "SYS81"
+
+  // 601 = COULD_NOT_PARSE_REQUEST_MSG, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 601, amfcode: "SYS81"
+
+  // 602 = COULD_NOT_CREATE_RESPONSE_MSG, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 602, amfcode: "SYS81"
+
+  // 603 = INVALID_HOTEL_CODE_SUPPLIED, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 603, amfcode: "SYS81"
+
+  // 604 = NO_INV_AVL, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 604, amfcode: "SYS83"
+
+  // 605 = NO_INV_AVL_WITHIN_SUPPLIED_PRICE_RANGE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 605, amfcode: "SYS83"
+
+  // 606 = NO_INV_AVL_FOR_REQUESTED_PRICE_PLANS, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 606, amfcode: "SYS83"
+
+  // 607 = NO_INV_RATE_PLAN_CODE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 607, amfcode: "SYS83"
+
+  // 608 = NO_INV_ROOM_TYPE_CODE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 608, amfcode: "SYS83"
+
+  // 650 = NO_INV_BED_TYPE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 650, amfcode: "SYS83"
+
+  // 651 = NO_INV_CC_TYPE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 651, amfcode: "SYS83"
+
+  // 652 = NO_INV_POLICY_TYPE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 652, amfcode: "SYS83"
+
+  // 653 = INCORRECT_BILLING_ADDRESS_FORMAT, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 653, amfcode: "SYS83"
+
+  // 654 = BOOK_ONE_ROOM_AT_A_TIME, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 654, amfcode: "SYS83"
+
+  // 655 = INVALID_CONF_NUM_CANNOT_FIND_RESERVATION, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 655, amfcode: "SYS83"
+
+  // 656 = INVALID_COUNTRY_CODE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 656, amfcode: "SYS83"
+
+  // 657 = INVALID_STATE_CODE, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 657, amfcode: "SYS83"
+
+
+ /**
+  * 7XX
+  */
+  // 700 = NON_UNIQUE_EXTERNAL_ID, SYS83 = SYSTEM TEMPORARILY UNAVAILABLE, TRY AGAIN LATER
+  map opscode: 700, amfcode: "SYS83"
+
+
+  /**
+   * 9XX
+   */
+  // 900 = GENERIC_INTERNAL_SERVER_ERROR, SYS81 = SYSTEM ERROR, Generic internal server error
+  map opscode: 900, amfcode: "SYS81"
+
+  logger.info "*** Added all AMF Error Code Mappings ..."
+}
+
+
+
+// OTA Error Codes
+mapErrorCode ( "OTA" )
+{
+  // 99 = ERROR_CODE_MAPPING_NOT_FOUND
+  map opscode: 99, otacode: "324", otatype: "345", lang: "EN", text: "Unable to process, internal error code mapping error"
+
+  // 100 = SERVICE_ENDPOINT_UNAVAILABLE
+  map opscode: 100, otacode: "324", otatype: "345", lang: "EN", text: "Request Processing error"
+  
+  // 101 = SERVICE_REQUEST_PROCESSING_ERROR
+  map opscode: 101, otacode: "324", otatype: "345", lang: "EN", text: "Request Processing error"
+    
+  // 102 = SERVICE_REQUEST_FORMAT_ERROR
+  map opscode: 101, otacode: "344"
+
+  /**
+   * 2XX
+   */
+  // 200 = SERVICE_PROVIDER_UNAVAILABLE
+  map opscode: 200, otacode: "322", otatype: "345", lang: "EN", text: "Unable to process, try later"
+  
+  /**
+   * 3XX
+   */
+  // 300 = SERVICE_RESPONSE_ENDPOINT_UNAVAILABLE
+  map opscode: 300, otacode: "322", otatype: "345", lang: "EN", text: "Unable to process, try later"
+
+  // 301 = SERVICE_RESPONSE_PROCESSING_ERROR
+  map opscode: 301, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+  
+  // 302 = SERVICE_RESPONSE_FORMAT_ERROR  
+  map opscode: 302, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+  
+  /**
+   * 5XX
+   */
+  // 500 = START_AND_END_DATE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 500, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 501 = START_AND_END_DATE_PARSE_ERROR, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 501, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 502 = START_DATE_PRIOR_TO_CURRENT_DATE, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 502, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 503 = INVALID_CHECK_IN_OUT_DATE, IND07 = INVALID DATE
+  map opscode: 503, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 504 = INVALID_NUMBER_OF_NIGHTS
+  map opscode: 503, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 510 = REQUEST_DATA_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 510 , otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 511 = PRODUCT_TYPE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 511, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 520 = REQUIRED_FIELD_MISSING_IN_AMENITY, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 520, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 525 = REQUIRED_FIELD_MISSING_IN_CHANNEL_INFO
+  map opscode: 525, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 530 = REQUIRED_FIELD_MISSING_IN_CRITERIA
+  map opscode: 530, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 535 = REQUIRED_FIELD_MISSING_IN_GUEST_INFO
+  map opscode: 535, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 540 = REQUIRED_FIELD_MISSING_IN_PRICE_RANGE
+  map opscode: 540, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 541 = PRICE_RANGE_MIN_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 541, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 542 = PRICE_RANGE_MAX_IS_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 542, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 545 = REQUIRED_FIELD_MISSING_IN_RATE_PLAN
+  map opscode: 545, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 546 = RATE_PLAN_CODE_NULL, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 546, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 550 = REQUIRED_FIELD_MISSING_IN_SEARCH_INFO
+  map opscode: 550, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 551 = SEARCH_CRITERIA_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 551, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 552 = SINGLE_PROPERTY_SEARCH_CRITERIA_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 552, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 555 = REQUIRED_FIELD_MISSING_IN_REQUEST_DATA
+  map opscode: 555, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 560 = REQUIRED_FIELD_MISSING_IN_SOURCE_DATA
+  map opscode: 560, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 561 = CHANNEL_INFO_COUNT_INCORRECT, SYS81 = SYSTEM ERROR, UNABLE TO PROCESS
+  map opscode: 561, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 565 = REQUIRED_FIELD_MISSING_IN_STAY
+  map opscode: 565, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 566 = RATE_PLAN_COUNT_EXCEEDS_MAX
+  map opscode: 566, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 567 = INVALID_GUEST_INFO_COUNT
+  map opscode: 567, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  /**
+   * 6XX
+   */
+  // 600 = INVALID_RESERVATION_MGT_REQ_TYPE
+  map opscode: 600, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 601 = COULD_NOT_PARSE_REQUEST_MSG
+  map opscode: 601, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 602 = COULD_NOT_CREATE_RESPONSE_MSG
+  map opscode: 602, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 603 = INVALID_HOTEL_CODE_SUPPLIED
+  map opscode: 603, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 604 = NO_INVENTORY_AVAILABLE
+  map opscode: 604, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 605 = NO_INV_AVL_WITHIN_SUPPLIED_PRICE_RANGE
+  map opscode: 605, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 606 = NO_INV_AVL_FOR_REQUESTED_PRICE_PLANS
+  map opscode: 606, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 607 = NO_INV_RATE_PLAN_CODE
+  map opscode: 607, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 608 = NO_INV_ROOM_TYPE_CODE
+  map opscode: 608, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 650 = NO_INV_BED_TYPE
+  map opscode: 650, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 651 = NO_INV_CC_TYPE
+  map opscode: 651, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 652 = NO_INV_POLICY_TYPE
+  map opscode: 652, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 653 = INCORRECT_BILLING_ADDRESS_FORMAT
+  map opscode: 653, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 654 = BOOK_ONE_ROOM_AT_A_TIME
+  map opscode: 654, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 655 = INVALID_CONF_NUM_CANNOT_FIND_RESERVATION
+  map opscode: 655, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 656 = INVALID_COUNTRY_CODE
+  map opscode: 656, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  // 657 = INVALID_STATE_CODE
+  map opscode: 657, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+
+ /**
+  * 7XX
+  */
+  // 700 = NON_UNIQUE_EXTERNAL_ID
+  map opscode: 700, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+ 
+  /**
+   * 9XX
+   */
+  // 900 = GENERIC_INTERNAL_SERVER_ERROR
+  map opscode: 900, otacode: "326", otatype: "345", lang: "EN", text: "Unable to process"
+
+  logger.info "*** Added all OTA XML Error Code Mappings ..."
+}

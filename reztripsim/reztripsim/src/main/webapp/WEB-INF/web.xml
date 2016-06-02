@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+  <display-name>RezTrip CRS Simulator Module</display-name>
+
+
+  <!-- This and the listener below goes together and is required to start the Spring framework at startup -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.osgi.web.context.support.OsgiBundleXmlWebApplicationContext</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- This is required to be able to use CXF for RESTful webservices -->
+  <servlet>
+     <servlet-name>CXFServlet</servlet-name>
+     <display-name>CXF Servlet</display-name>
+     <servlet-class>
+       org.apache.cxf.transport.servlet.CXFServlet
+     </servlet-class>
+     <load-on-startup>1</load-on-startup>
+   </servlet>
+
+   <servlet-mapping>
+     <servlet-name>CXFServlet</servlet-name>
+     <url-pattern>/rs/*</url-pattern>
+   </servlet-mapping>
+
+</web-app>

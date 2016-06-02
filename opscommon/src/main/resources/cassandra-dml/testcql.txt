@@ -1,0 +1,6 @@
+
+select rid, numretries, txntype, status, readrequestjson, readresponsejson, readrequestxml, readresponsexml from txnlog ;
+
+select rid, numretries, txntype, status, notifreportrequestjson, notifreportresponsejson, notifreportrequestsuccessxml, notifreportresponsesuccessxml, notifreportrequesterrorsxml, notifreportresponseerrorsxml from txnlog
+
+ select rid, numretries, txntype, status, notifreportrequestjson, notifreportresponsejson, time from txnlog; 

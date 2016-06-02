@@ -1,0 +1,37 @@
+package com.its.openpath.module.opscommon.model.messaging.ops;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops";
+option optimize_for = LITE_RUNTIME;
+
+
+/**
+ * Data structures of 'common' OTA domain objects
+ */
+
+enum ProductType
+{
+  HOTEL_ROOM = 1;
+}
+
+message StatusApplicationControl
+{
+  required string inventoryTypeCode = 1;
+  required string ratePlanCode=2;
+  optional string start = 3;
+  optional string end = 4;
+  optional string mon = 5;
+  optional string tue = 6;
+  optional string weds = 7;
+  optional string thur = 8;
+  optional string fri = 9;
+  optional string sat = 10;
+  optional string sun = 11;
+  repeated BookingChannel bookingChannelList = 12;
+}
+
+message BookingChannel
+{
+  optional string code = 1;
+  optional string agentName = 2;
+}
+    

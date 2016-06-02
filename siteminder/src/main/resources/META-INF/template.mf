@@ -1,0 +1,20 @@
+Bundle-ManifestVersion: 2
+Bundle-name: ${bundle.name}
+Created-By: ${created.by}
+Bundle-Description: ${bundle.description}
+Created-By: ${bundle.createdBy}
+Vendor: ${bundle.vendor}
+Spring-Context: *;timeout:=30
+Bundle-Classpath: .,WEB-INF/classes
+DynamicImport-Package: 
+  com.dyuproject.protostuff;version=0.0.0.0, com.sun.ws.rs.*;version=0.0.0.0,
+  org.apache.cxf.*;version=0.0.0.0, META-INF.cxf;version=0.0.0, org.apache.cxf.jaxrs.utils;version=0.0.0,
+  org.springframework.*;version=0.0.0.0,
+  com.its.openpath.*;version=0.0.0.0,
+  javax.*;version=0.0.0.0,org.codehaus.*;version=0.0.0.0,
+  com.eaio.*;version=0.0.0.0,
+  org.osgi.*;version=0.0.0.0,
+  groovy.*;version=0.0.0.0,
+  com.sun.ws.rs.*;version=0.0.0.0
+Jetty-ContextFilePath: WEB-INF/jetty-webapp-context.xml
+

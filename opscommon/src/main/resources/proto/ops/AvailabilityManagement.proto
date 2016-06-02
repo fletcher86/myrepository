@@ -1,0 +1,310 @@
+package com.its.openpath.module.opscommon.model.messaging.ops;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops";
+option optimize_for = LITE_RUNTIME;
+
+import "OPSCommon.proto";
+import "OTACommon.proto";
+
+/**
+ * Defines data structures related to Product Availability
+ */
+
+enum RoomAvailabilitySearchType
+{
+  SINGLE_PROPERTY = 100;
+  AREA_AVAILABILITY = 101;
+}
+
+enum AvailabilityRequestType
+{
+  HOTEL_AVAILABILITY_NOTIF = 110;
+}
+
+message AvailabilityRequest
+{
+  optional Source source = 1;
+  required ProductType productType = 2;
+  optional RoomAvailabilityRequest requestData = 3;
+  repeated AvailabilityStatusInfo availabilityStatusInfos = 4;
+}
+
+message AvailabilityStatusInfo
+{
+  required StatusApplicationControl statusApplicationControl = 1;
+  optional string restrictionStatus = 2;
+  optional string lengthOfStayMinMaxMessageType = 3;
+  optional string lengthOfStayTime = 4;
+  optional string bookingLimit = 5;
+}
+message AvailabilityResponse
+{
+  required ProductType productType = 2;
+  optional RoomAvailabilityResponse responseData = 3;
+  optional ErrorResponse errorResponse = 4;
+}
+
+message RoomAvailabilityRequest
+{
+  required RoomAvailabilitySearchType searchType = 1;
+  required string extSysRefId = 2;
+  required string extSysTimestamp = 3;
+  required string multipartRequest = 4;
+  optional string primaryLangId = 5;
+  required string requireRateDetails = 6;
+  optional string requestedCurrency = 7;
+  optional string exactMatchOnly = 8;
+  optional Source source = 9;
+  required Stay stay = 10;
+  required Search search = 11;
+}
+
+message RoomAvailabilityResponse
+{
+  required string extSysRefId = 1;
+  required string extSysTimestamp = 2;
+  required string isSuccess = 3;
+  repeated RoomStay roomStays = 4;
+}
+
+/**
+ * Used in RoomAvailabilityResponse
+ */
+message RoomStay
+{
+  optional string availabilityStatus = 1;
+  repeated Room rooms = 2;
+  repeated AvailabilityRatePlan ratePlans = 3;
+  repeated RoomStayRate roomStayRates = 4;
+  repeated RoomStayGuestCount guestCounts = 5;
+  optional RoomStayTimeSpan timeSpan = 6;
+  repeated RoomAmenity amenities = 7;
+  optional PropertyInfo basicPropertyInfo = 8;
+}
+
+/**
+ * Used in RoomAvailabilityRequest
+ */
+message Stay
+{
+  required string roomCount = 1;
+  optional string roomCategory = 2;
+  required string start = 3;
+  optional string duration = 4;
+  optional string end = 5;
+
+  repeated AvailabilityRatePlan ratePlans = 6;
+  repeated RoomAmenity amenities = 7;
+  repeated GuestInfo guestInfo = 8;
+}
+
+message AvailabilityRatePlan
+{
+  optional string id = 1;
+  required string code = 2;
+  optional string category = 3;
+  optional string description = 4;
+  optional string taxDescription = 5;
+  optional string commissionable = 6;
+  optional string marketCode = 7;
+  optional string availabilityStatus = 8;
+  optional string effectiveDate = 9;
+  optional string expiryDate = 10;
+  optional string idRequiredAtCheckin = 11;
+  optional string promotionalText = 12;
+  repeated RatePlanInclusion inclusions = 13;
+}
+
+message RatePlanInclusion
+{
+  required string id = 1;
+  required string description = 2;
+  required string value = 3;
+}
+message Room
+{
+  required string typeId = 1;
+  required string category = 2;
+  required string description = 3;
+  required string isAlternate = 4;
+  required string numberOfUnits = 5;
+  required string numberOfUnitsMatchType = 6;
+  optional string adultOccupancyMatchType = 7;
+  optional string childOccupancyMatchType = 8;
+  optional string bedTypeMatchType = 9;
+  repeated RoomAmenity amenities = 10;
+}
+
+message RoomStayRate
+{
+  optional string availabilityStatus = 1;
+  optional string roomTypeCode = 2;
+  optional string description = 3;
+  optional string numberOfUnits = 4;
+  optional string ratePlanCode = 5;
+  optional string bookingCode = 6;
+  repeated RoomRate rates = 7;
+  optional RoomStayTotal total = 8;
+}
+
+message RoomRate
+{
+  optional string description = 1;
+  optional string rateTimeOfUnit = 2;
+  optional string minLOS = 3;
+  optional string maxLOS = 4;
+  optional string rateMode = 5;
+  optional string effectiveDate = 6;
+  optional BaseRoomStayRate baseRate = 7;
+  repeated RoomStayAdditionalGuestFee additionalGuestFees = 8;
+  repeated RoomStayAdditionalFee additionalFees = 9;
+  repeated RoomStayCancelPenalty cancelPenalties = 10;
+  optional PaymentPolicies paymentPolicies = 11;
+}
+
+message BaseRoomStayRate
+{
+  optional string additionalFeesExcluded = 1;
+  optional string amountBeforeTax = 2;
+  optional string decimalPlaces = 3;
+  optional string amountAfterTax = 4;
+  optional string currencyCode = 5;
+  optional string calculationMethod = 6;
+  optional string commissionable = 7;
+}
+
+message RoomStayTotal
+{
+  optional string amountBeforeTax = 1;
+  optional string amountAfterTax = 2;
+  optional string currencyCode = 3;
+  optional string additionalFeesExcluded = 4;
+  repeated RoomStayTax taxes = 5;
+}
+
+message RoomStayTax
+{
+  optional string amount = 1;
+  optional string taxCode = 2;
+  optional string percent = 3;
+  optional string chargeUnit = 4;
+}
+
+message RoomStayAdditionalGuestFee
+{
+  optional string id = 1;
+  optional string ageQualifier = 2;
+  optional string amountBeforeTax = 3;
+  optional string amountAfterTax = 4;
+  optional string decimalPlaces = 5;
+  optional string currencyCode = 6;
+}
+
+message RoomStayAdditionalFee
+{
+  optional string id = 1;
+  optional string amount = 3;
+  optional string currencyCode = 6;
+}
+
+message RoomStayCancelPenalty
+{
+  optional string id = 1;
+  optional string description = 2;
+  optional string timeUnit = 3;
+  optional string multiplier = 4;
+  optional string amount = 5;
+  optional string amountPercentage = 6;
+  optional string numberOfNights = 7;
+  optional string basisType = 8;
+  optional string taxInclusive = 9;
+  optional string feesInclusive = 10;
+  optional RoomStayCancelPenaltyDeadline deadline = 11;
+}
+
+message RoomStayCancelPenaltyDeadline
+{
+  optional string timeUnit = 1;
+  optional string multiplier = 2;
+  optional string qualifier = 3;
+}
+
+message PaymentPolicies
+{
+  optional RoomStayGuaranteePayment guaranteePayment = 1;
+}
+
+message RoomStayGuaranteePayment
+{
+  optional string type = 1;
+  optional string nonRefundable = 2;
+  optional RoomStayGuaranteePaymentAmount amount = 3;
+  optional RoomStayGuaranteeDeadline deadline = 4;
+  repeated AcceptablePayment acceptablePayments = 5;
+}
+
+message RoomStayGuaranteePaymentAmount
+{
+  optional string value = 1;
+  optional string currencyCode = 2;
+}
+
+message AcceptablePayment
+{
+  optional string id = 1;
+  optional string type = 2;
+  optional string code = 3;
+  optional string requireCVV = 4;
+}
+
+message RoomStayGuaranteeDeadline
+{
+  optional string multiplier = 1;
+  optional string timeUnit = 2;
+  optional string absoluteTime = 3;
+  optional string qualifier = 4;
+}
+
+message RoomStayRateInfo
+{
+  optional string effectiveDate = 1;
+  optional string timeUnit = 2;
+  optional string amountBeforeTax = 3;
+  optional string currencyCode = 4;
+}
+
+message RoomStayGuestCount
+{
+  optional string ageQualifier = 1;
+  optional string count = 2;
+}
+
+message RoomStayTimeSpan
+{
+  optional string duration = 1;
+  optional string start = 2;
+  optional string end = 3;
+}
+
+message Search
+{
+  repeated SearchCriteria criteria = 1;
+  optional PriceRange priceRange = 2;
+  required string isReturnUnavailableItems = 3;
+}
+
+message SearchCriteria
+{
+  required string groupCode = 1;
+  required string itemCode = 2;
+  optional string itemContext = 3;
+}
+
+message PriceRange
+{
+  required string min = 1;
+  required string max = 2;
+  optional string currencyCode = 3;
+  optional string priceIndicator = 4;
+}
+

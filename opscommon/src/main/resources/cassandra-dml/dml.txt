@@ -1,0 +1,68 @@
+CREATE keyspace openpath WITH strategy_class='SimpleStrategy' and strategy_options:replication_factor=1;
+
+USE openpath;
+
+CREATE table txnlog (
+  rid uuid primary key,
+  source text,
+  sourceurl text,
+  destination text,
+  destinationurl text,
+  txntype int,
+  txnsubtype text,
+  attributes text,
+  numretries int,
+  requestpayloadxml blob,
+  responsepayloadxml blob,
+  requestpayloadjson blob,
+  responsepayloadjson blob,
+  readrequestjson blob,
+  readresponsejson blob,
+  readrequestxml blob,
+  readresponsexml blob,
+  notifreportrequestjson blob,
+  notifreportresponsejson blob,
+  notifreportrequesterrorsxml blob,
+  notifreportresponseerrorsxml blob,
+  notifreportrequestsuccessxml blob,
+  notifreportresponsesuccessxml blob,
+  status text,
+  responsiblenodeid text,
+  time timestamp
+)
+WITH
+comment='The txnlog table stores request response transaction data';
+
+CREATE INDEX srcidx ON txnlog (source);
+
+CREATE INDEX destidx ON txnlog (destination);
+
+CREATE INDEX retryidx ON txnlog (numretries);
+
+CREATE INDEX respidx ON txnlog (responsiblenodeid);
+
+CREATE INDEX statusidx ON txnlog (status);
+
+CREATE INDEX txntypeidx ON txnlog (txnType);
+
+CREATE table errlog (
+  rid uuid primary key,
+  source text,
+  destination text,
+  errormsgtrace blob,
+  time timestamp,
+  msgtype int,
+  msgsubtype text
+)
+WITH
+comment='The errlog table stores application errors where the errormsgtrace is the full java stack strace';
+
+CREATE INDEX esrcids ON errlog (source);
+
+CREATE INDEX edestidx ON errlog (destination);
+
+CREATE INDEX emsgtidx  ON errlog (msgtype);
+
+CREATE INDEX emsgstidx  ON errlog (msgsubtype);
+
+exit;

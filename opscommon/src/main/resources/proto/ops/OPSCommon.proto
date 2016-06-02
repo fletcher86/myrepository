@@ -1,0 +1,275 @@
+package com.its.openpath.module.opscommon.model.messaging.ops;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops";
+option optimize_for = LITE_RUNTIME;
+
+
+/**
+ * Data structures of OPS 'common' domain objects
+ */
+
+enum ProductType
+{
+  UNKNOWN = 1;
+  HOTEL_ROOM = 2;
+}
+
+enum OpsTxnType
+{
+  AVAILABILITY_MGMT = 1;
+  RATE_MGMT = 2;
+  RESERVATION_MGMT = 3;
+  RESERVATION_NOTIFICATION_REPORT_MGMT = 4;
+  RESERVATION_NOTIFICATION_REPORT_SUCCESS_MGMT = 5;
+  RESERVATION_NOTIFICATION_REPORT_ERRORS_MGMT = 6;
+}
+
+enum OpsErrorCode
+{
+  // Request processing error conditions
+  SERVICE_ENDPOINT_UNAVAILABLE = 100;
+  SERVICE_REQUEST_PROCESSING_ERROR = 101;
+  SERVICE_REQUEST_FORMAT_ERROR = 102;
+
+  // Routing error conditions
+  SERVICE_PROVIDER_UNAVAILABLE = 200;
+
+  // Response processing error conditions
+  SERVICE_RESPONSE_ENDPOINT_UNAVAILABLE = 300;
+  SERVICE_RESPONSE_PROCESSING_ERROR = 301;
+  SERVICE_RESPONSE_FORMAT_ERROR = 302;
+
+  // CRS specific errors
+  // 5XX
+  START_AND_END_DATE_NULL = 500;
+  START_AND_END_DATE_PARSE_ERROR = 501;
+  START_DATE_PRIOR_TO_CURRENT_DATE = 502;
+  INVALID_CHECK_IN_OUT_DATE = 503;
+  REQUEST_DATA_IS_NULL = 510;
+  PRODUCT_TYPE_NULL = 511;
+  REQUIRED_FIELD_MISSING_IN_AMENITY = 520;
+  REQUIRED_FIELD_MISSING_IN_CHANNEL_INFO = 525;
+  REQUIRED_FIELD_MISSING_IN_CRITERIA = 530;
+  REQUIRED_FIELD_MISSING_IN_GUEST_INFO = 535;
+  REQUIRED_FIELD_MISSING_IN_PRICE_RANGE = 540;
+  PRICE_RANGE_MIN_IS_NULL = 541;
+  PRICE_RANGE_MAX_IS_NULL = 542;
+  REQUIRED_FIELD_MISSING_IN_RATE_PLAN = 545;
+  RATE_PLAN_CODE_NULL = 546;
+  REQUIRED_FIELD_MISSING_IN_SEARCH_INFO = 550;
+  SEARCH_CRITERIA_COUNT_INCORRECT = 551;
+  SINGLE_PROPERTY_SEARCH_CRITERIA_COUNT_INCORRECT = 552;
+  REQUIRED_FIELD_MISSING_IN_REQUEST_DATA = 555;
+  REQUIRED_FIELD_MISSING_IN_SOURCE_DATA = 560;
+  CHANNEL_INFO_COUNT_INCORRECT = 561;
+  REQUIRED_FIELD_MISSING_IN_STAY = 565;
+  RATE_PLAN_COUNT_EXCEEDS_MAX = 566;
+  INVALID_GUEST_INFO_COUNT = 567;
+
+  // 6XX
+  INVALID_RESERVATION_MGT_REQ_TYPE = 600;
+
+  // 9XX
+  GENERIC_INTERNAL_SERVER_ERROR = 900;
+}
+
+message Source
+{
+  required string id = 1;
+  required string type = 2;
+  required string description = 3;
+  optional string countryCode = 4;
+  optional string pseudoCityCode = 5;
+  repeated SourceChannel channelInfo = 6;
+}
+
+message Ack
+{ 
+  optional string id = 1;
+  optional string status = 2;
+  required ProductType productType = 3 [default = ProductType.UNKNOWN];
+  optional AckResponse responseData = 4;
+}
+
+message AckResponse
+{ 
+  optional string isSuccess = 1;
+  optional string extSysTimestamp = 2;
+  optional string extSysRefId = 3;
+}
+
+message SourceChannel
+{
+  required string type = 1;
+  required string id = 2;
+  required string name = 3;
+}
+
+message ErrorMessage
+{
+  required OpsErrorCode errorCode = 1;
+  required string errorMessage = 2;
+}
+
+message ErrorResponse
+{
+  repeated ErrorMessage errorMessages = 1;
+}
+
+
+enum OpsMessageType
+{
+  UNKNOWN = 0;
+  COMMS_ERROR = 98;
+  COMMS_RECONNECTED = 99;
+  COMMS_CONNECTED = 100;
+  COMMS_DISCONNECTED = 101;
+  USER_ACTIVITY_MSG = 102;
+  USER_LOGIN = 103;
+  USER_LOGOUT = 104;
+  SYSTEM_SHUTDOWN = 200;
+  SYSTEM_MODULE_STARTED = 201;
+  SYSTEM_MODULE_STOPPED = 202;
+  SYSTEM_WARNING_EVENT = 203;
+  SYSTEM_FATAL_EVENT = 204;
+  SYSTEM_INFO_EVENT = 205;
+}
+
+
+/**
+ * This message is used by the OPS Message Bus Service. This acts as a container/envelope to contain
+ * messages that can be exchanged between two entities using the Message Bus Service.
+ *
+ * VERY IMPORTANT: the messageType must be unique and must be well-known to all pub/sub entities
+ */
+message OpsMessage
+{
+  // Message Type can be a OpsMessageType or some other custom type, but must be a globally unique value
+  required int32 messageType = 1;
+  optional string messageSubType = 2;
+  required string correlationId = 3;
+  optional bytes correlationIdBytes = 4;
+  required int64 timestamp = 5;
+  optional string source = 6;
+  optional string destination = 7;
+  required string data = 8;
+}
+
+message GuestInfo
+{
+  optional string ageQualifier = 1;
+  optional string count = 2;
+  repeated string frequencyTravellerIds = 3;
+  optional string name = 4;
+  optional string firstName = 5;
+  optional string lastName = 6;
+  repeated Phone contactPhoneNumbers = 7;
+  repeated Email contactEmails = 8;
+  repeated Address addresses = 10;
+}
+
+enum PhoneType
+{
+  HOME = 1;
+  MOBILE = 2;
+  OFFICE1 = 3;
+  OFFICE2 = 4;
+  HOME_FAX = 5;
+  OFFICE_FAX = 6;
+  OTHER = 7;
+}
+
+message Phone
+{
+ required PhoneType type = 1;
+ required string number = 2;
+ optional string additionalText = 3;
+}
+
+enum EmailType
+{
+  PRIMARY = 1;
+  SECONDARY = 2;
+  OTHER = 3;
+}
+
+message Email
+{
+  required EmailType type = 1;
+  required string address = 2;
+  optional string additionalText = 3;
+}
+
+enum AddressType
+{
+  HOME = 1;
+  OFFICE = 2;
+  OTHER = 3;
+}
+
+message Address
+{
+  required AddressType type = 1;
+  required string line1 = 2;
+  optional string line2 = 3;
+  optional string line3 = 4;
+  optional string line4 = 5;
+  optional string city = 6;
+  optional string state = 7;
+  optional string zip = 8;
+  optional string countryCode = 9;
+  optional string additionalText = 10;
+}
+
+message PropertyInfo
+{
+  optional string chainCode = 1;
+  optional string hotelCode = 2;
+  optional string name = 3;
+  optional string addressLine1 = 4;
+  optional string addressLine2 = 5;
+  optional string city = 6;
+  optional string state = 7;
+  optional string country = 8;
+  repeated HotelAmenity hotelAmenities= 9;
+}
+
+message RoomAmenity
+{
+  required string id = 1;
+  optional string description = 2;
+  optional string quantity = 3;
+  optional string includedInRate = 4;
+  optional string needConfirmation = 5;
+  optional string existsCode = 6;
+}
+
+message HotelAmenity
+{
+  required string id = 1;
+  required string description = 2;
+  optional string includedInRate = 3;
+  optional string confirmable = 4;
+}
+
+message RoomInfo
+{
+  optional string typeId = 1;
+  optional string quality = 2;
+  optional string location = 3;
+  optional string ratePrefix = 4;
+  optional string rate = 5;
+  optional string rateCurrencyCode = 6;
+  optional string rateCategory = 7;
+  optional string totalRoomRate = 8;
+  optional string ratePlanCode = 9;
+}
+
+message ExtraBedInfo
+{
+  optional string prefix = 1;
+  optional string rate = 2;
+  optional string currencyCode = 3;
+  optional string quantity = 4;
+}
+

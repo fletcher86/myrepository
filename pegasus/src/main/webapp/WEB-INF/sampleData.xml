@@ -1,0 +1,586 @@
+<OTA_HotelAvailRQ xmlns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EchoToken="AB1234" TimeStamp="2011-04-01T12:31:54Z" Target="Production" Version="2.001" RateDetailsInd="true">
+  <POS>
+    <Source> <!-- Travel Agent's IATA -->
+      <RequestorID Type="5" ID="123456" ID_Context="IATA" />
+    </Source>
+    <Source> <!-- Primary Channel - Alternate Distribution System (Type=2) -->
+      <BookingChannel Primary="true" Type="2">
+        <CompanyName Code="WB" CodeContext="USW" />
+      </BookingChannel>
+    </Source>
+    <Source> <!-- Sub-Channel (SGA) -->
+      <BookingChannel Primary="false" Type="2">
+        <CompanyName Code="A1" CodeContext="USW" />
+      </BookingChannel>
+    </Source>
+  </POS>
+  <AvailRequestSegments>
+    <AvailRequestSegment ResponseType="PropertyRateList">
+      <StayDateRange Start="2011-06-01" End="2011-06-06" />
+      <RoomStayCandidates>
+        <RoomStayCandidate Quantity="1">
+          <GuestCounts> <!-- Two adults -->
+            <GuestCount AgeQualifyingCode="10" Count="2" />
+            <!-- One child -->
+            <GuestCount AgeQualifyingCode="8" Count="1" />
+          </GuestCounts>
+        </RoomStayCandidate>
+      </RoomStayCandidates>
+      <HotelSearchCriteria>
+        <Criterion>
+          <HotelRef HotelCode="AB1234" ChainCode="XY" HotelCodeContext="Standard" />
+        </Criterion>
+      </HotelSearchCriteria>
+    </AvailRequestSegment>
+  </AvailRequestSegments>
+</OTA_HotelAvailRQ>
+
+<OTA_HotelAvailRS xmlns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EchoToken="AB1234" TimeStamp="2011-04-01T12:31:54Z" Target="Production" Version="4.001">
+<POS>
+  <Source> <!-- Travel Agent's IATA -->
+    <RequestorID Type="5" ID="123456" ID_Context="IATA" />
+  </Source>
+  <Source> <!-- Primary Channel - Alternate Distribution System (Type=2) -->
+    <BookingChannel Primary="true" Type="2">
+      <CompanyName Code="WB" CodeContext="USW" />
+    </BookingChannel>
+  </Source>
+  <Source> <!-- Sub-Channel (SGA) -->
+    <BookingChannel Primary="false" Type="2">
+      <CompanyName Code="A1" CodeContext="USW" />
+    </BookingChannel>
+  </Source>
+</POS>
+<Success />
+<RoomStays> <!-- First RoomStay - King room, best available rate -->
+  <RoomStay AvailabilityStatus="AvailableForSale" ResponseType="PropertyRateList">
+    <RoomTypes>
+      <RoomType RoomTypeCode="KNG">
+        <RoomDescription>
+          <Text>STANDARD KING ROOM WITH BATH AND SHOWER</Text>
+        </RoomDescription>
+      </RoomType>
+    </RoomTypes>
+    <RatePlans>
+      <RatePlan RatePlanCode="BAR" AvailabilityStatus="AvailableForSale" RatePlanType="13">
+        <RatePlanDescription>
+          <Text>BEST AVAILABLE RATE</Text>
+        </RatePlanDescription>
+        <AdditionalDetails> <!-- Promotional Text (Type="15") -->
+          <AdditionalDetail Type="15">
+            <DetailDescription>
+              <Text>JOIN OUR REWARDS PROGRAM FOR FREE NIGHTS AND MUCH MORE</Text>
+            </DetailDescription>
+          </AdditionalDetail>
+        </AdditionalDetails>
+        <Commission StatusType="Full" Percent="7.00" />
+      </RatePlan>
+    </RatePlans>
+    <RoomRates>
+      <RoomRate RoomTypeCode="KNG" RatePlanCode="BAR" AvailabilityStatus="ChangeDuringStay">
+        <Rates> <!-- Bookable room rate (no EffectiveDate) -->
+          <Rate RateTimeUnit="Day"> <!-- Average daily rate (RoomRate/@RateMode="3") -->
+            <Base AmountBeforeTax="105.00" CurrencyCode="GBP" />
+            <CancelPolicies> <!-- Must be cancelled 1 day prior to arrival to avopid penalties -->
+              <CancelPenalty>
+                <Deadline OffsetTimeUnit="Day" OffsetUnitMultiplier="1" OffsetDropTime="BeforeArrival" />
+              </CancelPenalty>
+            </CancelPolicies>
+            <PaymentPolicies>
+              <GuaranteePayment GuaranteeType="GuaranteeRequired" />
+            </PaymentPolicies>
+          </Rate>
+        </Rates>
+        <!-- Total price per room per stay -->
+        <Total AmountBeforerTax="525.00" AmountAfterTax="630.00" CurrencyCode="GBP" />
+      </RoomRate>
+    </RoomRates>
+    <TimeSpan Start="2011-06-01" End="2011-06-05" />
+    <BasicPropertyInfo ChainCode="AB" HotelCode="1234" />
+  </RoomStay>
+  <!-- Second RoomStay - Twin room, best available rate -->
+  <RoomStay AvailabilityStatus="AvailableForSale" ResponseType="PropertyRateList">
+    <RoomTypes>
+      <RoomType RoomTypeCode="TWN">
+        <RoomDescription>
+          <Text>STANDARD TWIN ROOM WITH BATH AND SHOWER</Text>
+        </RoomDescription>
+      </RoomType>
+    </RoomTypes>
+    <RatePlans>
+      <RatePlan RatePlanCode="BAR" AvailabilityStatus="AvailableForSale" RatePlanType="13">
+        <RatePlanDescription>
+          <Text>BEST AVAILABLE RATE</Text>
+        </RatePlanDescription>
+        <AdditionalDetails> <!-- Promotional Text (Type="15") -->
+          <AdditionalDetail Type="15">
+            <DetailDescription>
+              <Text>JOIN OUR REWARDS PROGRAM FOR FREE NIGHTS AND MUCH MORE</Text>
+            </DetailDescription>
+          </AdditionalDetail>
+        </AdditionalDetails>
+        <Commission StatusType="Full" Percent="7.00" />
+      </RatePlan>
+    </RatePlans>
+    <RoomRates>
+      <RoomRate RoomTypeCode="TWN" RatePlanCode="BAR" AvailabilityStatus="ChangeDuringStay">
+        <Rates> <!-- Bookable room rate (no EffectiveDate) -->
+          <Rate RateTimeUnit="Day"> <!-- Average daily rate (RoomRate/@RateMode="3") -->
+            <Base AmountBeforeTax="95.00" CurrencyCode="GBP" />
+            <CancelPolicies> <!-- Must be cancelled 1 day prior to arrival to avopid penalties -->
+              <CancelPenalty>
+                <Deadline OffsetTimeUnit="Day" OffsetUnitMultiplier="1" OffsetDropTime="BeforeArrival" />
+              </CancelPenalty>
+            </CancelPolicies>
+            <PaymentPolicies>
+              <GuaranteePayment GuaranteeType="GuaranteeRequired" />
+            </PaymentPolicies>
+          </Rate>
+        </Rates>
+        <!-- Total price per room per stay -->
+        <Total AmountBeforerTax="475.00" AmountAfterTax="570.00" CurrencyCode="GBP" />
+      </RoomRate>
+    </RoomRates>
+    <TimeSpan Start="2011-06-01" End="2011-06-06" />
+    <BasicPropertyInfo ChainCode="AB" HotelCode="1234" />
+  </RoomStay>
+</RoomStays>
+</OTA_HotelAvailRS>
+
+
+  <!-- =========================================== -->
+  <!-- Complex Area Availability Request -->
+  <!-- =========================================== -->
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<SOAP-ENV:Header xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+  xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+  <wsa:MessageID>MESSAGE ID</wsa:MessageID>
+  <wsa:To>CUSTOMER API URL</wsa:To>
+  <wsa:Action>ACTION VALUE</wsa:Action>
+  <wsa:ReplyTo>
+    <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+  </wsa:ReplyTo>
+  <wsse:Security SOAP-ENV:mustUnderstand="true">
+    <wsse:UsernameToken>
+      <wsse:Username>USERNAME</wsse:Username>
+      <wsse:Password>PASSWORD</wsse:Password>
+      <wsse:PartnerID>ADS CHANNEL</wsse:PartnerID>
+    </wsse:UsernameToken>
+  </wsse:Security>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <OTA_HotelAvailRQ xmlns="http://www.opentravel.org/OTA/2003/05"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EchoToken="AB1234" TimeStamp="2011-
+04-01T12:31:54Z" Target="Production" Version="2.001" ExactMatchOnly="true">
+    <POS>
+      <Source PseudoCityCode="T3N" ISOCountry="US" TerminalID="AX9100"
+        AirportCode="MIA">
+        <!-- Travel Agent's IATA Number -->
+        <RequestorID Type="11" ID="123456" ID_Context="IATA" />
+      </Source>
+      <Source>
+        <!-- Primary Channel - GDS (Type="1"), Amadeus (Code="1A") -->
+        <BookingChannel Primary="true" Type="1">
+          <CompanyName Code="1A" CodeContext="USW" />
+        </BookingChannel>
+      </Source>
+      <Source>
+        <!-- Sub-Channel Channel (SGA) -->
+        <BookingChannel Primary="false" Type="1">
+          <CompanyName Code="XY" CodeContext="USW" />
+        </BookingChannel>
+      </Source>
+    </POS>
+    <AvailRequestSegments>
+      <AvailRequestSegment ResponseType="PropertyList">
+        <StayDateRange Start="2012-09-01" End="2012-09-06" Duration="P5N" />
+        <RatePlanCandidates>
+          <!-- Corporate rate plan code "PEG" (RatePlanCategory="C"), with Corporate Customer
+        Number "654321" -->
+          <RatePlanCandidate RatePlanCode="PEG" RatePlanCategory="C"
+            RatePlanID="654321" />
+          <!-- Standard Promotional Rates (commissionable only) -->
+          <RatePlanCandidate RatePlanCode="PRO" RatePlanCategory="S">
+            <RatePlanCommission ComissionableInd="true" />
+          </RatePlanCandidate>
+        </RatePlanCandidates>
+        <RoomStayCandidates>
+          <RoomStayCandidate Quantity="1">
+            <GuestCounts IsPerRoom="true">
+              <!-- Two adults -->
+              <GuestCount AgeQualifyingCode="10" Count="2" />
+              <!-- One child -->
+              <GuestCount AgeQualifyingCode="8" Count="1" />
+            </GuestCounts>
+          </RoomStayCandidate>
+        </RoomStayCandidates>
+        <HotelSearchCriteria AvailableOnlyIndicator="false">
+          <Criterion>
+            <HotelRef HotelCode="AB1234" ChainCode="XY" HotelCodeContext="Standard" />
+            <HotelRef HotelCode="CD5678" ChainCode="XY" HotelCodeContext="Standard" />
+            <HotelRef HotelCode="EF9801" ChainCode="XY" HotelCodeContext="Standard" />
+            <!-- Only return average daily rates (RateMode="4") in the range £100 to £250 -->
+            <RateRange MinRate="100.00" MaxRate="250.00" CurrencyCode="GBP"
+              RateMode="4" />
+          </Criterion>
+        </HotelSearchCriteria>
+      </AvailRequestSegment>
+    </AvailRequestSegments>
+  </OTA_HotelAvailRQ>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+  <!-- =========================================== -->
+  <!-- Complex Area Availability Response -->
+  <!-- =========================================== -->
+<OTA_HotelAvailRS xmlns="http://www.opentravel.org/OTA/2003/05"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EchoToken="AB1234" TimeStamp="2011-
+04-01T12:31:54Z" Target="Production" Version="4.001">
+<POS>
+  <Source>
+    <!-- Travel Agent's IATA -->
+    <RequestorID Type="5" ID="123456" ID_Context="IATA" />
+  </Source>
+  <Source>
+    <!-- Primary Channel - Alternate Distribution System (Type=2) -->
+    <BookingChannel Primary="true" Type="2">
+      <CompanyName Code="WB" CodeContext="USW" />
+    </BookingChannel>
+  </Source>
+  <Source>
+    <!-- Sub-Channel (SGA) -->
+    <BookingChannel Primary="false" Type="2">
+      <CompanyName Code="A1" CodeContext="USW" />
+    </BookingChannel>
+  </Source>
+</POS>
+<Success />
+<RoomStays>
+  <!-- Availability status and rate range for property AB1234 -->
+  <RoomStay AvailabilityStatus="AvailableForSale" ResponseType="PropertyList">
+    <RatePlans>
+      <RatePlan RatePlanCode="PEG" AvailabilityStatus="NoAvailability" />
+      <RatePlan RatePlanCode="PRO" AvailabilityStatus="AvailableForSale" />
+    </RatePlans>
+    <RoomRates>
+      <RoomRate>
+        <Rates>
+          <!-- Minimum rate -->
+          <Rate RateMode="1">
+            <Base AmountBeforeTax="125.00" CurrencyCode="GBP"
+              CalculationMethod="3" CommissionableStatus="Commissionable" />
+          </Rate>
+          <!-- Maximum rate -->
+          <Rate RateMode="2">
+            <Base AmountBeforeTax="215.00" CurrencyCode="GBP"
+              CalculationMethod="3" CommissionableStatus="Commissionable" />
+          </Rate>
+        </Rates>
+      </RoomRate>
+    </RoomRates>
+    <GuestCounts>
+      <!-- Two adults -->
+      <GuestCount AgeQualifyingCode="10" Count="2" />
+      <!-- One child -->
+      <GuestCount AgeQualifyingCode="8" Count="1" />
+    </GuestCounts>
+    <BasicPropertyInfo ChainCode="XY" HotelCode="AB1234" />
+  </RoomStay>
+  <!-- Availability status and rate range for property CD5678 -->
+  <RoomStay AvailabilityStatus="ChangeDuringStay" ResponseType="PropertyList">
+    <RatePlans>
+      <RatePlan RatePlanCode="PEG" AvailabilityStatus="AvailableForSale" />
+      <RatePlan RatePlanCode="PRO" AvailabilityStatus="AvailableForSale" />
+    </RatePlans>
+    <RoomRates>
+      <RoomRate>
+        <Rates>
+          <!-- Minimum rate -->
+          <Rate RateMode="1">
+            <Base AmountBeforeTax="80.00" CurrencyCode="GBP"
+              CalculationMethod="3" CommissionableStatus="Commissionable" />
+          </Rate>
+          <!-- Maximum rate -->
+          <Rate RateMode="2">
+            <Base AmountBeforeTax="170.00" CurrencyCode="GBP"
+              CalculationMethod="3" CommissionableStatus="Commissionable" />
+          </Rate>
+        </Rates>
+      </RoomRate>
+    </RoomRates>
+    <GuestCounts>
+      <!-- Two adults -->
+      <GuestCount AgeQualifyingCode="10" Count="2" />
+      <!-- One child -->
+      <GuestCount AgeQualifyingCode="8" Count="1" />
+    </GuestCounts>
+    <BasicPropertyInfo ChainCode="XY" HotelCode="CD5678" />
+  </RoomStay>
+  <!-- Availability status and rate range for property EF9012 -->
+  <RoomStay AvailabilityStatus="NoAvailability" ResponseType="PropertyList">
+    <BasicPropertyInfo ChainCode="XY" HotelCode="CD5678" />
+  </RoomStay>
+</RoomStays>
+</OTA_HotelAvailRS>
+
+  <!-- =========================================== -->
+  <!-- Complex Single Property Availability Request -->
+  <!-- =========================================== -->
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<SOAP-ENV:Header xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+  xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+  <wsa:MessageID>MESSAGE ID</wsa:MessageID>
+  <wsa:To>CUSTOMER API URL</wsa:To>
+  <wsa:Action>ACTION VALUE</wsa:Action>
+  <wsa:ReplyTo>
+    <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+  </wsa:ReplyTo>
+  <wsse:Security SOAP-ENV:mustUnderstand="true">
+    <wsse:UsernameToken>
+      <wsse:Username>USERNAME</wsse:Username>
+      <wsse:Password>PASSWORD</wsse:Password>
+      <wsse:PartnerID>ADS CHANNEL</wsse:PartnerID>
+    </wsse:UsernameToken>
+  </wsse:Security>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <OTA_HotelAvailRQ xmlns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    EchoToken="AB1234" TimeStamp="2011-04-01T12:31:54Z" Target="Production" Version="2.001" RateDetailsInd="true"
+    ExactMatchOnly="true" PrimaryLanguageID="en">
+    <POS>
+      <Source PseudoCityCode="T3N" ISOCountry="US" TerminalID="AX9100" AirportCode="MIA">
+        <!-- Travel Agent's IATA Number -->
+        <RequestorID Type="11" ID="123456" ID_Context="IATA" />
+      </Source>
+      <Source>
+        <!-- Primary Channel - GDS (Type="1"), Amadeus (Code="1A") -->
+        <BookingChannel Primary="true" Type="1">
+          <CompanyName Code="1A" CodeContext="USW" />
+        </BookingChannel>
+      </Source>
+      <Source>
+        <!-- Sub-Channel Channel (SGA) -->
+        <BookingChannel Primary="false" Type="1">
+          <CompanyName Code="XY" CodeContext="USW" />
+        </BookingChannel>
+      </Source>
+    </POS>
+    <AvailRequestSegments>
+      <AvailRequestSegment ResponseType="PropertyRateList">
+        <StayDateRange Start="2012-09-01" End="2012-09-06" Duration="P5N" />
+        <RatePlanCandidates>
+          <!-- Corporate rate plan code "PEG" (RatePlanCategory="C"), with Corporate Customer Number "654321" -->
+          <RatePlanCandidate RatePlanCode="PEG" RatePlanCategory="C" RatePlanID="654321" ComissionableInd="Both" />
+          <!-- Standard Promotional Rates (commissionable only) -->
+          <RatePlanCandidate RatePlanCode="PRO" RatePlanCategory="S">
+            <RatePlanCommission ComissionableInd="true" />
+          </RatePlanCandidate>
+        </RatePlanCandidates>
+        <RoomStayCandidates>
+          <!-- One deluxe room -->
+          <RoomStayCandidate Quantity="1" RoomCategory="4">
+            <!-- King Bed -->
+            <RoomAmenity RoomAmentity="58" Quantity="1" />
+            <!-- Crib/cot -->
+            <RoomAmenity RoomAmentity="26" Quantity="1" />
+            <GuestCounts IsPerRoom="true">
+              <!-- Two adults -->
+              <GuestCount AgeQualifyingCode="10" Count="2" />
+              <!-- One child aged 1 -->
+              <GuestCount AgeQualifyingCode="8" Age="1" Count="1" />
+            </GuestCounts>
+          </RoomStayCandidate>
+        </RoomStayCandidates>
+        <HotelSearchCriteria>
+          <Criterion>
+            <!-- UltraSwitch property and chain ID -->
+            <HotelRef HotelCode="AB1234" ChainCode="XY" HotelCodeContext="Standard" />
+            <!-- GDS property ID -->
+            <HotelRef HotelCode="GDS123" HotelCodeContext="GDS" />
+            <!-- HRS property ID -->
+            <HotelRef HotelCode="XYZ123" HotelCodeContext="HRS" />
+            <!-- Only return average daily rates (RateMode="4") in the range $100 to $200 -->
+            <RateRange MinRate="100.00" MaxRate="200.00" CurrencyCode="USD" RateMode="4" />
+          </Criterion>
+        </HotelSearchCriteria>
+      </AvailRequestSegment>
+    </AvailRequestSegments>
+  </OTA_HotelAvailRQ>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+  <!-- =========================================== -->
+  <!-- Complex Single Property Availability Response -->
+  <!-- =========================================== -->
+<OTA_HotelAvailRS xmlns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EchoToken="AB1234" TimeStamp="20011-04-01T12:31:54Z" Target="Production" Version="4.001" PrimaryLangID="en">
+<Success />
+<RoomStays>
+  <RoomStay AvailabilityStatus="AvailableForSale" ResponseType="PropertyRateList">
+    <RoomTypes>
+      <RoomType RoomTypeCode="A1K" NumberOfUnits="1" NumberOfUnitsMatchType="1" RoomCategory="4" AdultOccupancyMatchType="1" ChildOccupancyMatchType="1" BedTypeMatchType="1">
+        <RoomDescription>
+          <Text>Deluxe king room with luxury ensuite bathroom</Text>
+        </RoomDescription>
+        <!-- King Bed -->
+        <Amenity RoomAmenity="58" />
+        <!-- Crib/cot -->
+        <Amenity RoomAmenity="26" ExistsCode="1" IncludedInRateIndicator="false" ConfirmableInd="true" />
+        <!-- Wireless Internet -->
+        <Amenity RoomAmenity="123" IncludedInRateIndicator="false" ConfirmableInd="false">Free high speed wireless Internet access in every room</Amenity>
+      </RoomType>
+    </RoomTypes>
+    <RatePlans>
+      <!-- Requested promotional rates (PRO) are not available -->
+      <RatePlan RatePlanCode="PRO" QualificationType="Requested" AvailabilityStatus="NoAvailability" />
+      <!-- Requested corporate rates is available (requested "PEG" but this is mapped to rate plan "P123" in the CRS) -->
+      <RatePlan RatePlanCode="P123" EffectiveDate="2010-06-01" ExpireDate="2011-12-31" RatePlanID="654321" RatePlanName="Pegasus Solutions Corporate Rate" MarketCode="C" RatePlanType="4" ID_RequiredInd="true" RatePlanCategoryMatchType="1" AvailabilityStatus="AvailableForSale">
+        <RatePlanDescription>
+          <Text>Corporate rate for Pegasus Solutions employees. Employee ID required at check-in</Text>
+        </RatePlanDescription>
+        <RatePlanInclusions TaxInclusive="false">
+          <RatePlanInclusionDescription>
+            <Text>Rates do not include State tax, Federal tax or any surcharges</Text>
+          </RatePlanInclusionDescription>
+        </RatePlanInclusions>
+        <Commission StatusType="Full">
+          <CommissionAmountPayable Amount="60.00" />
+        </Commission>
+        <AdditionalDetails>
+          <!-- Requested Rate Plan Code -->
+          <AdditionalDetail Type="18" Code="PEG" />
+          <!-- Promotional text -->
+          <AdditionalDetail Type="15">
+            <DetailDescription>
+              <Text>Great savings available for weekend breaks during the summer</Text>
+            </DetailDescription>
+          </AdditionalDetail>
+        </AdditionalDetails>
+      </RatePlan>
+    </RatePlans>
+    <RoomRates>
+      <RoomRate RoomTypeCode="A1K" NumberOfUnits="1" RatePlanCode="P123" BookingCode="A1KP123">
+        <Rates>
+          <!-- Bookable room rate (no EffectiveDate) -->
+          <Rate RateTimeUnit="Day" MinLOS="2" MaxLOS="7" RateMode="4">
+            <!-- Bookable room rate (calculated as firsty night rate - RateMode="4") -->
+            <Base AmountBeforeTax="120.00" CurrencyCode="USD" AdditionalFeesExcludedIndicator="true" />
+            <!-- Additional guest amount are for information only - they are included in the bookable room rate -->
+            <AdditionalGuestAmounts>
+              <!-- Extra child charge (included in total) -->
+              <AdditionalGuestAmount AgeQualifyingCode="8">
+                <Amount AmountAfterTax="20.00" CurrencyCode="USD" />
+              </AdditionalGuestAmount>
+            </AdditionalGuestAmounts>
+            <Fees>
+              <!-- Crib/cot charge (included in total) -->
+              <Fee Code="37" Amount="5.00" CurrencyCode="USD" />
+            </Fees>
+            <CancelPolicies>
+              <CancelPenalty>
+                <!-- Cancellation required 2 days before arrival to avoid penalties -->
+                <Deadline OffsetUnitMultiplier="2" OffsetTimeUnit="Day" OffsetDropTime="BeforeArrival" />
+                <!-- Cancellation penalty is 50% of full amount -->
+                <AmountPercent Percent="50.00" BasisType="FullStay" TaxInclusive="true" FeesInclusive="true" />
+                <PenaltyDescription>
+                  <Text>Cancel penalty is 50 percentage of total price if cancelled within 2 days of arrival</Text>
+                </PenaltyDescription>
+              </CancelPenalty>
+            </CancelPolicies>
+            <PaymentPolicies>
+              <!-- Deposit policy -->
+              <GuaranteePayment GuaranteeType="Deposit" NonRefundableIndicator="true" SeriesCodeReqInd="true">
+                <AcceptedPayments>
+                  <!-- Deposit method accepted - credit card -->
+                  <AcceptedPayment GuaranteeTypeCode="5" />
+                  <!-- Deposit method accepted - debit card -->
+                  <AcceptedPayment GuaranteeTypeCode="6" />
+                  <!-- Deposit method accepted - wire payment/bank transfer -->
+                  <AcceptedPayment GuaranteeTypeCode="28" />
+                  <!-- American Express accepted -->
+                  <AcceptedPayment PaymentTransactionTypeCode="charge">
+                    <PaymentCard CardCode="AX" />
+                  </AcceptedPayment>
+                  <!-- MasterCard accepted -->
+                  <AcceptedPayment PaymentTransactionTypeCode="charge">
+                    <PaymentCard CardCode="MC" />
+                  </AcceptedPayment>
+                  <!-- Visa accepted -->
+                  <AcceptedPayment PaymentTransactionTypeCode="charge">
+                    <PaymentCard CardCode="VI" />
+                  </AcceptedPayment>
+                </AcceptedPayments>
+                <!-- Deposit of $200 required 1 week after booking -->
+                <AmountPercent Amount="200.00" CurrencyCode="USD" />
+                <Deadline OffsetUnitMultiplier="1" OffsetTimeUnit="Week" OffsetDropTime="AfterBooking" />
+              </GuaranteePayment>
+            </PaymentPolicies>
+            <RateDescription>
+              <Text>Pegasus special corporare rate for deluxe king room</Text>
+            </RateDescription>
+          </Rate>
+          <!-- Rates Changes - (EffectiveDate present) -->
+          <Rate EffectiveDate="2011-06-01" RateTimeUnit="Day">
+            <Base AmountBeforeTax="120.00" CurrencyCode="USD" />
+          </Rate>
+          <Rate EffectiveDate="2011-06-05" RateTimeUnit="Day">
+            <Base AmountBeforeTax="90.00" CurrencyCode="USD" />
+          </Rate>
+        </Rates>
+        <RoomRateDescription>
+          <Text>King room corporate rate</Text>
+        </RoomRateDescription>
+        <!-- Total price per room per stay (includes discounts) -->
+        <Total AmountBeforeTax="570.00" AmountAfterTax="669.10" CurrencyCode="USD" AdditionalFeesExcludedIndicator="false">
+          <Taxes> <!-- Federal tax -->
+            <Tax Code="6" Percent="5.00" ChargeUnit="18"></Tax>
+            <!-- State tax -->
+            <Tax Code="15" Percent="8.00" ChargeUnit="18"></Tax>
+            <!-- Service Charge -->
+            <Tax Code="14" Amount="5.00" CurrencyCode="USD" ChargeUnit="18"></Tax>
+          </Taxes>
+        </Total>
+      </RoomRate>
+    </RoomRates>
+    <GuestCounts>
+      <!-- Rate includes 2 adults - note may not be the same as the request, e.g. if child is charged as an adult -->
+      <GuestCount AgeQualifyingCode="10" Count="2" />
+      <!-- Rate includes 1 child -->
+      <GuestCount AgeQualifyingCode="8" Count="1" />
+    </GuestCounts>
+    <TimeSpan Start="2011-06-01" Duration="P5D" End="2011-06-05" />
+    <BasicPropertyInfo ChainCode="XY" HotelCode="AB1234">
+      <!-- Complimentary continental breakfast -->
+      <HotelAmenity Code="159" IncludedInRateIndicator="true" ConfirmableInd="true">
+        <Description>
+          <Text>Complimentary continental breakfast served between 6:30 and 10:00 daily</Text>
+        </Description>
+      </HotelAmenity>
+      <!-- Dinner at extra cost -->
+      <HotelAmenity Code="175" IncludedInRateIndicator="false" ConfirmableInd="false" />
+    </BasicPropertyInfo>
+  </RoomStay>
+</RoomStays>
+</OTA_HotelAvailRS>
+
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<SOAP-ENV:Header xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+  <wsa:MessageID>046E0356C60B7E</wsa:MessageID>
+  <wsa:To>https://cass-elb.ttaws.com:443/pegasus/process</wsa:To>
+  <wsa:ReplyTo>
+    <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+  </wsa:ReplyTo>
+  <wsse:Security SOAP-ENV:mustUnderstand="true">
+    <wsse:UsernameToken>
+      <wsse:PartnerID>WB</wsse:PartnerID>
+    </wsse:UsernameToken>
+  </wsse:Security>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<amf>
+
+</amf>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+

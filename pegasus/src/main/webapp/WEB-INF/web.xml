@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+  <display-name>OpenPath - Pegasus Connectivity Module</display-name>
+
+  <servlet>
+    <servlet-name>RequestProcessorServlet</servlet-name>
+    <servlet-class>com.its.openpath.module.pegasus.RequestProcessorServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestProcessorServlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- This and the listener below goes together and is required to start the Spring framework at startup -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.osgi.web.context.support.OsgiBundleXmlWebApplicationContext</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+</web-app>

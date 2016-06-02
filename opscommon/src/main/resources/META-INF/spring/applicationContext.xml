@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================== -->
+<!-- The main Spring bean definition file. -->
+<!-- ===================================== -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-2.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <context:component-scan base-package="com.its.openpath.module.opscommon" />
+  <context:annotation-config />
+  <context:mbean-export />
+
+  <!-- Load the runtime environment specific configuration file -->
+  <util:properties id="runtimeProperties"
+    location="classpath:conf/environments/${ENV}/runtime.properties" />
+    
+</beans>
+

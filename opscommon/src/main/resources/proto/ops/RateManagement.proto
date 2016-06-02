@@ -1,0 +1,129 @@
+package com.its.openpath.module.opscommon.model.messaging.ops.rate;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops.rate";
+option optimize_for = LITE_RUNTIME;
+
+import "OPSCommon.proto";
+import "OTACommon.proto";
+
+/**
+ * Defines data structures related to Rate Management
+ */
+
+enum RateManagementType
+{
+  RATE_PLAN_INFO = 300;
+  RATE_UPDATE_NOTIF = 301;
+}
+
+message RateRequest
+{
+  optional Source source = 1;
+  required ProductType productType = 2;
+  optional RoomRateManagementRequest requestData= 3;
+}
+
+message RateResponse
+{
+  required ProductType productType = 1;
+  optional RoomRateManagementResponse responseData = 2;
+  optional ErrorResponse errorResponse = 3;
+}
+
+message RoomRateManagementRequest
+{
+  required RateManagementType rateManagementType = 1;
+  required string extSysRefId = 2;
+  required string extSysTimestamp = 3;
+  optional GDSRatePlanInfoRequest gdsRatePlanInfo = 4;
+  optional IDSRatePlanInfoRequest idsRatePlanInfo = 5;
+}
+
+message GDSRatePlanInfoRequest
+{
+  optional string chainCode = 1;
+  optional string hotelCode = 2;
+  optional string hotelCity = 3;
+  optional string pseudoCityCode = 4;
+  optional string checkInDate = 5;
+  optional string checkOutDate = 6;
+  optional string lengthOfStay = 7;
+  optional string ratePlanCode = 8;
+  optional string ratePlanIndicator = 9;
+  optional string rateCategory = 10;
+  optional string corporateAccountNumber = 11;
+  optional string frequentGuestNumber = 12;
+  optional string requestedCurrencyCode = 13;
+  optional string nativeCurrencyCode = 14;
+  optional string confirmationNumber = 15;
+  optional string roomTypeCode = 16;
+  optional string roomOccupancyTotal = 17;
+  optional string numberOfPayingPersonsPerRoom = 18;
+  optional string numberOfChildren = 19;
+  optional string ageOfChildren = 20;
+  optional string numberOfBeds = 21;
+  optional string bedType = 22;
+  optional string roomQuality = 23;
+  repeated ExtraBedInfo extraBeds = 24;
+  optional string numberOfRooms = 25;
+  optional string calculatePercentages = 26;
+  optional string taxApplication = 27;
+}
+
+message IDSRatePlanInfoRequest
+{
+  optional Source source = 1;
+  repeated RateAmountInfo rateAmountMessages = 2;
+}
+
+message RoomRateManagementResponse
+{
+  required string extSysRefId = 1;
+  required string extSysTimestamp = 2;
+  required bool isSuccess = 3;
+  optional ErrorResponse errorResponse = 4;
+  optional GDSRatePlanInfoResponse gdsRatePlanInfo = 5;
+  optional IDSRatePlanInfoResponse idsRatePlanInfo = 6;
+}
+
+message GDSRatePlanInfoResponse
+{
+  optional string description = 1;
+}
+
+message IDSRatePlanInfoResponse
+{
+ optional string description = 1;
+}
+
+message RateAmountInfo
+{
+  required StatusApplicationControl statusApplicationControl = 1;
+  repeated Rate rates = 2;
+}
+
+message Rate
+{
+  optional string rateDescription = 1;
+  optional string currencyCode = 2;
+  required string start = 3;
+  required string end = 4;
+  optional string rateTimeUnit = 5;
+  optional string unitMultiplier = 6;
+  optional string amountAfterTax = 7;
+  required string mon = 8;
+  required string tue = 9;
+  required string weds = 10;
+  required string thur = 11;
+  required string fri = 12;
+  required string sat = 13;
+  required string sun = 14;
+}
+
+message RatePlan
+{
+  required string code = 1;
+  required string type = 2;
+  repeated Rate rates = 3;
+}
+

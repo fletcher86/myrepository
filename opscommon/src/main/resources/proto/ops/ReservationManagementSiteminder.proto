@@ -1,0 +1,173 @@
+package com.its.openpath.module.opscommon.model.messaging.ops.siteminder.reservation;
+
+option java_package = "com.its.openpath.module.opscommon.model.messaging.ops.reservation.siteminder";
+option optimize_for = LITE_RUNTIME;
+
+import "OPSCommon.proto";
+
+ 
+enum ReservationManagementType
+{
+  PULL_RESERVATIONS = 210;
+  CONFIRM_RESERVATIONS =211;
+  CONFIRMED_RESERVATIONS=212;
+  ERROR_RESERVATIONS=213;
+}
+
+ message ReservationRequest
+{
+  required ProductType productType = 1;
+  optional ReservationPullRequest requestData = 2;
+}
+ 
+message ReservationResponse
+{
+  required ProductType productType = 1;
+  optional ErrorResponse errorResponse = 2;
+  optional ReservationPullResponse responseData = 3;
+}
+
+message ReservationPullRequest
+{
+   optional Source source = 1;
+   optional ReservationManagementType reservationMgtType = 2;
+   optional string selectionCriteria = 3;
+   optional string extSysRefId = 4;
+   optional string extSysTimestamp = 5;
+}
+ 
+message ReservationPullResponse
+{
+  optional Source source = 1;
+  optional ReservationManagementType reservationMgtType = 2;
+  optional string isSuccess = 3;
+  optional string echoToken = 4;
+  optional bytes echoTokenBytes = 5;
+  optional string extSysTimestamp = 6;
+  optional string extSysRefId = 7;
+  repeated HotelReservation reservationList = 8;
+}
+
+message HotelReservation 
+{
+   required string createDateTime = 1;
+   required string resStatus = 2;
+   optional string errorMessageType = 3;
+   optional string errorCode = 4;
+   optional string errorMessage = 5;
+   required string uniqueIdType = 6 [default = "14"];
+   required string uniqueId = 7;
+   required string resIdType = 8;
+   required string resIdValue = 9;
+
+   repeated RoomStay roomStayList = 10;
+   
+   repeated ResGuest resGuestList = 11;
+   
+   optional string grandTotalCurrencyCode = 12;
+   optional string grandTotalBeforeTax = 13;
+   optional string grandTotalAfterTax = 14;
+}
+
+message RoomStay
+{
+    optional string promotionCode = 1;
+    required RoomRate roomRate = 2;  
+    repeated GuestCount guestCountList = 3;
+    required string startDate = 4;
+    required string endDate = 5;
+    optional string totalAmountBeforeTax = 6;
+    optional string totalAmountAfterTax = 7;
+    optional string totalCurrencyCode = 8;
+    
+    required string hotelCode = 9;
+    
+    repeated ResGuestRPH resGuestRPHList = 10;
+    
+    optional string comment = 11;
+}
+
+message RoomRate 
+{
+    required string roomTypeCode = 1;
+    required string numberOfUnits = 2;
+    required string ratePlanCode = 3;
+    required Rate rate = 4;
+}
+
+message Rate
+{
+    required string rateTimeUnit = 1;
+    required string effectiveDate = 2;
+    required string expireDate = 3;
+    required string unitMultiplier = 4;
+    optional string currencyCode = 5;
+    optional string amountAfterTax = 6;
+    optional string amountBeforeTax = 7;
+}
+
+message GuestCount
+{
+    required string ageQualifyingCode = 1 [default = "10"];
+    required string count = 2;
+}
+
+message ResGuestRPH
+{
+   required string rph = 1;
+}
+
+message ResGuest
+{
+   required string resGuestRph = 1;
+   optional string arrivalTime = 2;
+   required Profile profile = 3;
+}
+
+message Profile
+{
+    required string profileType = 1;
+    required Customer customer = 2;
+}
+
+message Customer
+{
+   required string givenName = 1;
+   required string surname = 2;
+   optional string telephone = 3;
+   optional string email = 4;
+   optional Address address = 5;
+}
+
+message Address
+{
+   repeated AddressLine addressLineList = 1;
+   optional string cityName = 2;
+   optional string postalCode = 3;
+   optional string stateProv = 4;
+   optional string countryName = 5;
+}
+
+message AddressLine
+{
+   optional string line = 1;
+}
+
+
+message NotificationReportRequest
+{
+   required string status = 1;
+   optional string echoToken = 2;
+   optional bytes echoTokenBytes = 3;
+   repeated HotelReservation reservationList = 4;
+}
+
+message NotificationReportResponse
+{
+   optional string status = 1;
+   optional string errorMessageType = 2;
+   optional string errorCode = 3;
+   optional string errorMessage = 4;
+}
+ 
+
