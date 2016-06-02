@@ -1,0 +1,138 @@
+/**
+ *
+ *  Siteminder CRS Connectivity Module build script.
+ *
+ */
+
+/** *************************************************************************************************************** **/
+/** General configuration                                                                                           **/
+/** *************************************************************************************************************** **/
+project.group = 'com.its.openpath.module'
+project.version = project.property( 'siteminder.module.version' )
+project.description = 'Siteminder CRS connectiviy Module'
+
+project.ext.artifactoryUserId = "itsdev"
+project.ext.artifactoryPasssword = "{DESede}b/Qp5aJisNKBuEJxcrkZzg=="
+project.ext.artifactoryBaseURL = "http://itstcb.com/artifactory"
+project.ext.artifactoryRemoteRepoURL = "${artifactoryBaseURL}/remote-repo"
+project.ext.artifactorySnapshotURL = "${artifactoryBaseURL}/lbs-snapshot-local"
+project.ext.artifactoryReleaseURL = "${artifactoryBaseURL}/libs-release-local"
+project.ext.houstonBundlesDir = '5'
+
+// Need this section to be able to use the Houston Gradle Plugin
+buildscript {
+  repositories {
+    mavenLocal()
+  }
+  dependencies {
+    classpath group: 'com.its.houston', name: 'com.its.houston-gradleplugin', version: project.property( 'houston.gradleplugin.version' )
+  }
+  configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+/** *************************************************************************************************************** **/
+/** Dependency and Plugin configuration                                                                             **/
+/** *************************************************************************************************************** **/
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+configurations {
+  runtime {
+    description = 'Runtime classpath'
+    transitive = false
+  }
+
+  houston {
+    description = 'All Houston application dependencies (compile + runtime)'
+    transitive = false
+  }
+
+  compile {
+    extendsFrom houston
+    description = 'Houston appliation compile time dependencies'
+    transitive = false
+  }
+}
+
+dependencies {
+  compile gradleApi()
+  groovy localGroovy()
+  compile  ("com.its.openpath.module:opscommon:${project.property( 'openpath.opscommon.version')}")
+}
+
+apply plugin: 'houstonGradlePlugin'
+
+
+/** *************************************************************************************************************** **/
+/** Project artifacts and repository configuration                                                                  **/
+/** *************************************************************************************************************** **/
+// Artifactory repos used to retrive artifacts required at compile time. The "remote-repos" is a virtual repo in Artifactory
+repositories {
+  maven {
+    credentials {
+      username "${project.ext.artifactoryUserId}"
+      password "${project.ext.artifactoryPasssword}"
+    }
+    url "http://itstcb.com/artifactory/remote-repos"
+  }
+  mavenLocal()
+}
+
+// Configure the auto generated pom.xml properties when deployed to the local Maven .m2 repo
+configure( install.repositories.mavenInstaller ) {
+  pom.project {
+    version "${project.version}"
+    artifactId "$project.group-${project.name}"
+  }
+}
+
+// War file to build and its configuration properties
+war {
+  classpath = classpath.filter { File file ->
+    !file.name.endsWith( 'jar') && !file.name.endsWith( ('war'))
+  }
+  //  classpath = fileTree(dir: 'build/classes')
+  archiveName = "${project.group}-${project.name}-${project.version}.war"
+}
+
+// Artifactory configuration to be used when uploading the built artifacts
+uploadArchives {
+  repositories.mavenDeployer {
+    pom.groupId = "${project.group}"
+    pom.artifactId = "${project.name}"
+    pom.version = "${project.version}"
+    uniqueVersion = false
+
+    /** Artifactory URL to upload Release artifacts **/
+    repository( url: "${project.ext.artifactoryReleaseURL}" ) {
+      authentication( userName: "${project.ext.artifactoryUserId}", password: "${project.ext.artifactoryPasssword}" )
+      snapshots( enabled: "false" )
+      releases( enabled: "true" )
+    }
+
+    /** Artifactory URL to upload SNAPSHOT artifacts **/
+    snapshotRepository( url: "${project.ext.artifactorySnapshotURL}" ) {
+      authentication( userName: "${project.ext.artifactoryUserId}", password: "${project.ext.artifactoryPasssword}" )
+      snapshots( enabled: "true" )
+      releases( enabled: "false" )
+    }
+  }
+}
+
+
+/** *************************************************************************************************************** **/
+/** Other local function definitions                                                                                **/
+/** *************************************************************************************************************** **/
+/**
+ * Strip the "-SNAPSHOT" part from a version number so that it can be set as the 'BundleVersion' OSGi header.
+ */
+def strippedVersion( )
+{
+  String ver = version
+  return ver.contains( "-SNAPSHOT" ) ? ver.substring( 0, ver.indexOf( "-SNAPSHOT" ) ) : ver
+}
+
