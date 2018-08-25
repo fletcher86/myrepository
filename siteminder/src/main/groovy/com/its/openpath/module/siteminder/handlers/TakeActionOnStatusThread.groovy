@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
  * <p/>
  * Take Action on a given status
  * <p/>
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since Sep 6, 2012
  */
 public class TakeActionOnStatusThread

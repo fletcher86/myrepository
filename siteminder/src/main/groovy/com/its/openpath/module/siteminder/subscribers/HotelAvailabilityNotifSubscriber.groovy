@@ -19,7 +19,7 @@ import com.its.openpath.module.siteminder.builders.HotelAvailabilityXMLBuilder
  * <p/>
  * Base subscriber class
  * <p />
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since June 2012
  */
 

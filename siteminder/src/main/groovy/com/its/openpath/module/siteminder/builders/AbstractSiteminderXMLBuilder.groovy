@@ -13,7 +13,7 @@ import com.its.openpath.module.opscommon.model.messaging.ops.OpsTxnType
  * <p/>
  * Base class for all 'Builder' classes. Contains methods common for all subclasses.
  * <p />
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since June 2012
  */
 abstract class AbstractSiteminderXMLBuilder

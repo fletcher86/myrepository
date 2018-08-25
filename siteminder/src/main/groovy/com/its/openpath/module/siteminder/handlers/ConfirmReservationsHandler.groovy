@@ -18,7 +18,7 @@ import com.its.openpath.module.opscommon.util.TimeUUIDUtils
  * <p/>
  * Concrete class for building ReservationsPullResponseJSONBuilder
  * <p />
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since June 2012
  */
 

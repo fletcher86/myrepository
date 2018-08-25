@@ -20,7 +20,7 @@ import com.its.openpath.module.opscommon.util.TimeUUIDUtils
  * <p/>
  * Concrete class for building RateManagementXMLBuilder and inherits common functions from AbstractSiteminderXMLBuilder
  * <p />
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since June 2012
  */
 @Service("RateManagementXMLBuilder")

@@ -28,7 +28,7 @@ import com.its.openpath.module.siteminder.subscribers.TrustManagerManipulator
  * <p/>
  * Concrete class for building ReservationsPullResponseJSONBuilder
  * <p />
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since June 2012
  */
 abstract class AbstractSAFHandler extends AbstractEventPersistenceHandler

@@ -18,7 +18,7 @@ import com.its.openpath.module.opscommon.util.TimeUUIDUtils
  * <p/>
  * If a transaction has been sitting around for a while 'IN_PROGRESS', mark it as failed
  * <p/>
- * @author Lyle Fletcher
+ * @author Kent Fletcher
  * @since Sep 6, 2012
  */
 @Service("InProgressTxnHandler")
